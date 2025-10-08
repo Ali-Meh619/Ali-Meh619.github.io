@@ -1,0 +1,335 @@
+/* Custom Animations for Portfolio Website */
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Page fade-in animation */
+body {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* CV Button Pulse Animation */
+.cv-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(20, 157, 221, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(20, 157, 221, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(20, 157, 221, 0);
+  }
+}
+
+/* Hover effect for publication cards */
+.post {
+  transition: all 0.3s ease;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.post:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  background: #f8f9fa;
+}
+
+/* Hover effects for buttons */
+.btn-primary {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(20, 157, 221, 0.4);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Social links hover animation */
+.social-links a {
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  transform: translateY(-5px) scale(1.1);
+}
+
+/* Navigation hover effect */
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #149ddd;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Resume item hover effect */
+.resume-item {
+  transition: all 0.3s ease;
+  border-left: 3px solid #149ddd;
+  padding-left: 20px;
+  position: relative;
+}
+
+.resume-item:hover {
+  transform: translateX(5px);
+  border-left-width: 5px;
+}
+
+/* Info box hover effect */
+.info-box {
+  transition: all 0.3s ease;
+}
+
+.info-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Link hover animation */
+a {
+  transition: all 0.3s ease;
+}
+
+/* Skill item animation */
+.research-interest-item {
+  transition: all 0.3s ease;
+}
+
+.research-interest-item:hover {
+  transform: translateX(5px);
+  color: #149ddd;
+}
+
+/* Image hover effect */
+.profile img {
+  transition: all 0.3s ease;
+}
+
+.profile img:hover {
+  transform: scale(1.05);
+}
+
+/* Section title underline animation */
+.section-title h2 {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: #149ddd;
+  animation: slideIn 0.8s ease;
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 50px;
+  }
+}
+
+/* Floating animation for hero section */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.hero-container h1 {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Gradient background animation for hero */
+#hero {
+  background: linear-gradient(-45deg, #040404, #1a1a1a, #040404, #2a2a2a);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Staggered fade-in for list items */
+.about ul li,
+.resume-item ul li {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.about ul li:nth-child(1),
+.resume-item ul li:nth-child(1) { animation-delay: 0.1s; }
+.about ul li:nth-child(2),
+.resume-item ul li:nth-child(2) { animation-delay: 0.2s; }
+.about ul li:nth-child(3),
+.resume-item ul li:nth-child(3) { animation-delay: 0.3s; }
+.about ul li:nth-child(4),
+.resume-item ul li:nth-child(4) { animation-delay: 0.4s; }
+.about ul li:nth-child(5),
+.resume-item ul li:nth-child(5) { animation-delay: 0.5s; }
+.about ul li:nth-child(6),
+.resume-item ul li:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Back to top button animation */
+.back-to-top {
+  transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px);
+  background: #149ddd;
+}
+
+/* Mobile nav toggle animation */
+.mobile-nav-toggle {
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-toggle:hover {
+  transform: rotate(90deg);
+}
+
+/* Loading animation for images */
+img {
+  animation: imageLoad 0.5s ease;
+}
+
+@keyframes imageLoad {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* News item hover effect */
+.news ul p {
+  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.news ul p:hover {
+  background: rgba(20, 157, 221, 0.05);
+  transform: translateX(5px);
+}
+
+/* Contact info hover effect */
+.info .email,
+.info .phone,
+.info .address {
+  transition: all 0.3s ease;
+}
+
+.info .email:hover,
+.info .phone:hover,
+.info .address:hover {
+  transform: scale(1.05);
+}
+
+/* Icon spin animation on hover */
+.bi:hover {
+  animation: iconSpin 0.5s ease;
+}
+
+@keyframes iconSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Typewriter cursor blink */
+.typed-cursor {
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
