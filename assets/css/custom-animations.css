@@ -5,19 +5,8 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Page fade-in animation */
-body {
-  animation: fadeIn 0.5s ease-in;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+/* Page fade-in animation - keep it subtle to avoid flash */
+/* Removed body fade-in to prevent dark flash on load */
 
 /* CV Button Pulse Animation */
 .cv-pulse {
