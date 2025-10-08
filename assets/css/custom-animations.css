@@ -203,24 +203,8 @@ a {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Gradient background animation for hero */
-#hero {
-  background: linear-gradient(-45deg, #040404, #1a1a1a, #040404, #2a2a2a);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-}
-
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+/* Subtle overlay animation for hero - removed dark gradient */
+/* Keeping the original hero background from style.css */
 
 /* Staggered fade-in for list items */
 .about ul li,
