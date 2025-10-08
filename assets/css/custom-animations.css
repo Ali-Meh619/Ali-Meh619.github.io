@@ -8,6 +8,25 @@ html {
 /* Page fade-in animation - keep it subtle to avoid flash */
 /* Removed body fade-in to prevent dark flash on load */
 
+/* Ensure header/sidebar remains fixed and stable */
+#header {
+  position: fixed !important;
+  transition: none !important;
+}
+
+#header .profile img {
+  animation: none !important;
+}
+
+/* Disable animations that might affect layout */
+body, html {
+  animation: none !important;
+}
+
+main {
+  animation: none !important;
+}
+
 /* CV Button Pulse Animation */
 .cv-pulse {
   animation: pulse 2s infinite;
@@ -140,14 +159,8 @@ a {
   color: #149ddd;
 }
 
-/* Image hover effect */
-.profile img {
-  transition: all 0.3s ease;
-}
-
-.profile img:hover {
-  transform: scale(1.05);
-}
+/* Image hover effect - disabled to prevent sidebar instability */
+/* Removed profile image hover animation */
 
 /* Section title underline animation */
 .section-title h2 {
