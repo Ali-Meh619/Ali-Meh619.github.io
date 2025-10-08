@@ -14,9 +14,7 @@ html {
   transition: none !important;
 }
 
-#header .profile img {
-  animation: none !important;
-}
+/* Allow profile image to be interactive */
 
 /* Disable animations that might affect layout */
 body, html {
@@ -159,8 +157,14 @@ a {
   color: #149ddd;
 }
 
-/* Image hover effect - disabled to prevent sidebar instability */
-/* Removed profile image hover animation */
+/* Image hover effect */
+.profile img {
+  transition: all 0.3s ease;
+}
+
+.profile img:hover {
+  transform: scale(1.05);
+}
 
 /* Section title underline animation */
 .section-title h2 {
