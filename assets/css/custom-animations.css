@@ -324,141 +324,234 @@ img {
 }
 
 /*--------------------------------------------------------------
-# Mobile View Improvements
+# Mobile View Improvements - Complete Fix
 --------------------------------------------------------------*/
 
-/* Fix text overflow in hero section on mobile */
-@media (max-width: 768px) {
-  #hero {
-    padding: 0 15px;
-    overflow-x: hidden;
+/* Universal box-sizing and overflow prevention */
+* {
+  box-sizing: border-box;
+}
+
+/* Prevent horizontal scroll globally */
+html {
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100vw;
+}
+
+body {
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+}
+
+/* Fix black line - hide sidebar completely on mobile */
+@media (max-width: 1199px) {
+  #header {
+    display: none !important;
   }
 
+  #footer {
+    display: none !important;
+  }
+
+  #main {
+    margin-left: 0 !important;
+    width: 100%;
+    max-width: 100vw;
+  }
+}
+
+/* Comprehensive mobile fixes */
+@media (max-width: 768px) {
+  /* Prevent viewport expansion */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+  }
+
+  /* Fix hero section - CRITICAL */
+  #hero {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 0 20px !important;
+    overflow-x: hidden !important;
+    margin: 0 !important;
+  }
+
+  #hero:before {
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+
+  /* Override the min-width that causes expansion */
   #hero .hero-container {
-    max-width: 100%;
-    padding: 0 10px;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 15px !important;
+    margin: 0 !important;
   }
 
   #hero h1 {
-    font-size: 32px !important;
-    line-height: 40px !important;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    margin: 0 0 15px 0;
+    font-size: 28px !important;
+    line-height: 36px !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto;
+    margin: 0 0 15px 0 !important;
+    max-width: 100% !important;
   }
 
   #hero p {
-    font-size: 20px !important;
-    line-height: 28px !important;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    margin-bottom: 30px;
+    font-size: 18px !important;
+    line-height: 26px !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto;
+    margin-bottom: 30px !important;
+    max-width: 100% !important;
   }
 
-  #hero p span {
-    display: inline-block;
-    max-width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+  /* Fix typed.js long text */
+  #hero p span,
+  #hero p .typed,
+  .typed-cursor {
+    display: inline !important;
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    hyphens: auto;
   }
 
-  /* Fix main content padding and overflow */
+  /* Fix main content */
   #main {
-    padding: 0 10px;
-    overflow-x: hidden;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    margin: 0 !important;
   }
 
-  .container {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-    max-width: 100%;
-    overflow-x: hidden;
+  /* Fix container widths */
+  .container,
+  .container-fluid {
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    overflow-x: hidden !important;
+    margin: 0 auto !important;
   }
 
-  /* Ensure about section text doesn't overflow */
+  section {
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding: 40px 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  /* About section fixes */
+  .about {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
   .about p {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
     font-size: 15px !important;
+    max-width: 100% !important;
   }
 
-  /* Fix research interests on mobile */
   .about .col-md-6 {
     margin-bottom: 10px;
+    max-width: 100% !important;
+  }
+
+  .about ul {
+    padding-left: 0 !important;
+    max-width: 100% !important;
   }
 
   .about ul li {
     font-size: 14px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
   }
 
-  /* Fix resume items overflow */
+  /* Resume items */
   .resume-item {
     padding-left: 15px !important;
     margin-bottom: 20px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
   }
 
   .resume-item h4 {
-    font-size: 18px;
-    line-height: 1.3;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    font-size: 18px !important;
+    line-height: 1.4 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
   }
 
   .resume-item h5 {
-    font-size: 14px;
+    font-size: 14px !important;
+    max-width: 100% !important;
   }
 
   .resume-item p {
-    font-size: 14px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-}
-
-/* Fix black line/footer issue on mobile */
-@media (max-width: 1199px) {
-  body {
-    overflow-x: hidden;
-    width: 100%;
+    font-size: 14px !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
   }
 
-  html {
-    overflow-x: hidden;
-    width: 100%;
+  .resume-item a {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
   }
 
-  #footer {
-    background: #040b14;
-    border-top: none;
-    box-shadow: none;
-  }
-
-  /* Remove any potential black borders */
-  * {
-    box-sizing: border-box;
-  }
-}
-
-/* Prevent horizontal scroll */
-@media (max-width: 768px) {
-  body, html {
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
-
-  section {
-    padding: 40px 0;
-    overflow-x: hidden;
-  }
-
+  /* Section titles */
   .section-title h2 {
-    font-size: 26px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    font-size: 26px !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+  }
+
+  .section-title h3 {
+    font-size: 22px !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+  }
+
+  /* Row fixes */
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+  }
+
+  [class*="col-"] {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    max-width: 100% !important;
+  }
+
+  /* Links that might be too long */
+  a {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
   }
 }
 
