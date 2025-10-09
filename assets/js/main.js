@@ -255,15 +255,6 @@
   });
 
   /**
-   * Timeline animation enhancement
-   */
-  document.addEventListener('aos:in', ({ detail }) => {
-    if (detail && detail.classList.contains('timeline-item')) {
-      detail.style.opacity = '1';
-    }
-  });
-
-  /**
    * Initiate Pure Counter 
    */
   new PureCounter();

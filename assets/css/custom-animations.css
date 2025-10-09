@@ -213,17 +213,24 @@ a {
 /* Keeping the original hero background from style.css */
 
 /* Staggered fade-in for list items */
-.about ul li {
+.about ul li,
+.resume-item ul li {
   opacity: 0;
   animation: fadeInUp 0.6s ease forwards;
 }
 
-.about ul li:nth-child(1) { animation-delay: 0.1s; }
-.about ul li:nth-child(2) { animation-delay: 0.2s; }
-.about ul li:nth-child(3) { animation-delay: 0.3s; }
-.about ul li:nth-child(4) { animation-delay: 0.4s; }
-.about ul li:nth-child(5) { animation-delay: 0.5s; }
-.about ul li:nth-child(6) { animation-delay: 0.6s; }
+.about ul li:nth-child(1),
+.resume-item ul li:nth-child(1) { animation-delay: 0.1s; }
+.about ul li:nth-child(2),
+.resume-item ul li:nth-child(2) { animation-delay: 0.2s; }
+.about ul li:nth-child(3),
+.resume-item ul li:nth-child(3) { animation-delay: 0.3s; }
+.about ul li:nth-child(4),
+.resume-item ul li:nth-child(4) { animation-delay: 0.4s; }
+.about ul li:nth-child(5),
+.resume-item ul li:nth-child(5) { animation-delay: 0.5s; }
+.about ul li:nth-child(6),
+.resume-item ul li:nth-child(6) { animation-delay: 0.6s; }
 
 @keyframes fadeInUp {
   from {
@@ -314,173 +321,5 @@ img {
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
-}
-
-/*--------------------------------------------------------------
-# Timeline Styles for Experience Page
---------------------------------------------------------------*/
-.timeline-container {
-  position: relative;
-  padding: 20px 0;
-}
-
-/* Vertical timeline line */
-.timeline-container::before {
-  content: '';
-  position: absolute;
-  left: 30px;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, #149ddd, #37b3ed);
-  border-radius: 2px;
-}
-
-/* Timeline item wrapper */
-.timeline-item {
-  position: relative;
-  padding-left: 80px;
-  margin-bottom: 50px;
-  opacity: 0;
-}
-
-/* Timeline dot/circle */
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: 19px;
-  top: 0;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #149ddd;
-  border: 4px solid #f5f5f5;
-  box-shadow: 0 0 0 4px #149ddd;
-  z-index: 2;
-  transition: all 0.3s ease;
-}
-
-/* Animated pulse on hover */
-.timeline-item:hover::before {
-  box-shadow: 0 0 0 8px rgba(20, 157, 221, 0.3);
-  transform: scale(1.2);
-}
-
-/* Timeline content card */
-.timeline-content {
-  background: #fff;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  border-left: 4px solid #149ddd;
-}
-
-.timeline-content:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  border-left-width: 6px;
-}
-
-/* Timeline date badge */
-.timeline-date {
-  position: absolute;
-  left: 60px;
-  top: 0;
-  background: linear-gradient(135deg, #149ddd, #37b3ed);
-  color: #fff;
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  white-space: nowrap;
-  box-shadow: 0 3px 10px rgba(20, 157, 221, 0.3);
-  z-index: 3;
-  animation: fadeInRight 0.6s ease;
-}
-
-/* Timeline title styling */
-.timeline-content h4 {
-  color: #173b6c;
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  margin-top: 35px;
-}
-
-.timeline-content h4:first-child {
-  margin-top: 0;
-}
-
-.timeline-content p em {
-  color: #149ddd;
-  font-weight: 600;
-  font-size: 15px;
-}
-
-.timeline-content ul {
-  margin-top: 15px;
-}
-
-.timeline-content ul li {
-  margin-bottom: 10px;
-  line-height: 1.8;
-  position: relative;
-  padding-left: 25px;
-}
-
-.timeline-content ul li::before {
-  content: '▸';
-  position: absolute;
-  left: 0;
-  color: #149ddd;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.timeline-content ul li strong {
-  color: #173b6c;
-}
-
-/* Animation for timeline items appearing */
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .timeline-container::before {
-    left: 15px;
-  }
-  
-  .timeline-item {
-    padding-left: 50px;
-  }
-  
-  .timeline-item::before {
-    left: 6px;
-    width: 20px;
-    height: 20px;
-  }
-  
-  .timeline-date {
-    position: relative;
-    left: 0;
-    display: inline-block;
-    margin-bottom: 15px;
-  }
-}
-
-/* Special styling for supervisor/collaborator info */
-.timeline-content ul li strong {
-  display: inline-block;
-  min-width: 110px;
 }
 
