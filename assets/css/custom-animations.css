@@ -323,3 +323,15 @@ img {
   50% { opacity: 0; }
 }
 
+/*--------------------------------------------------------------
+# Profile Image Size Adjustment
+--------------------------------------------------------------*/
+#header .profile img {
+  width: 140px !important;
+  height: 140px !important;
+  border: 8px solid #2c2f3f;
+  margin: 15px auto;
+  display: block;
+  object-fit: cover;
+}
+
