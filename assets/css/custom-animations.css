@@ -384,12 +384,12 @@ img {
 --------------------------------------------------------------*/
 [data-theme="dark"] {
   --bg-primary: #1a1a1a;
-  --bg-secondary: #2d2d2d;
-  --bg-tertiary: #3a3a3a;
-  --text-primary: #e0e0e0;
-  --text-secondary: #b0b0b0;
+  --bg-secondary: #252525;
+  --bg-tertiary: #2f2f2f;
+  --text-primary: #f0f0f0;
+  --text-secondary: #c0c0c0;
   --border-color: #404040;
-  --card-bg: #2d2d2d;
+  --card-bg: #252525;
   --shadow: rgba(0, 0, 0, 0.5);
 }
 
@@ -630,5 +630,223 @@ img {
 
 [data-theme="dark"] .post:hover ul li::before {
   color: #37b3ed;
+}
+
+/*--------------------------------------------------------------
+# Enhanced Dark Mode Styling for Publications & All Pages
+--------------------------------------------------------------*/
+
+/* Publication page specific improvements */
+[data-theme="dark"] .post ul li b {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .post p {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .post p b {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .post p[style*="opacity"] {
+  opacity: 0.9 !important;
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .post span[style*="color"] {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .post span b {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .post i.fas,
+[data-theme="dark"] .post i.far,
+[data-theme="dark"] .post i.fab {
+  color: #149ddd !important;
+}
+
+[data-theme="dark"] .post .publication-links p {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .post .publication-links i {
+  color: #149ddd !important;
+}
+
+/* Better contrast for links in publications */
+[data-theme="dark"] .post a {
+  color: #4db8ff !important;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .post a:hover {
+  color: #37b3ed !important;
+  text-decoration: underline;
+}
+
+/* Section title improvements */
+[data-theme="dark"] .section-title p {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .section-title a {
+  color: #4db8ff !important;
+}
+
+[data-theme="dark"] .section-title a:hover {
+  color: #37b3ed !important;
+}
+
+/* Button improvements */
+[data-theme="dark"] .btn-primary {
+  background-color: #149ddd !important;
+  border-color: #149ddd !important;
+  color: #fff !important;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background-color: #37b3ed !important;
+  border-color: #37b3ed !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(20, 157, 221, 0.4);
+}
+
+/* Experience page improvements */
+[data-theme="dark"] .resume-item {
+  background-color: var(--card-bg) !important;
+  border-left: 3px solid #149ddd !important;
+  padding-left: 20px !important;
+}
+
+[data-theme="dark"] .resume-item:hover {
+  border-left-width: 5px !important;
+  background-color: var(--bg-tertiary) !important;
+}
+
+[data-theme="dark"] .resume-item h4 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .resume-item h5 {
+  color: #4db8ff !important;
+}
+
+[data-theme="dark"] .resume-item p {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .resume-item p em {
+  color: #4db8ff !important;
+}
+
+[data-theme="dark"] .resume-item ul li {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .resume-item ul li strong {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .resume-item a {
+  color: #4db8ff !important;
+}
+
+[data-theme="dark"] .resume-item a:hover {
+  color: #37b3ed !important;
+}
+
+/* About page improvements */
+[data-theme="dark"] .about p {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .about p strong {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .about ul li {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .about ul li i {
+  color: #149ddd !important;
+}
+
+[data-theme="dark"] .about a {
+  color: #4db8ff !important;
+}
+
+[data-theme="dark"] .about a:hover {
+  color: #37b3ed !important;
+}
+
+/* News page improvements */
+[data-theme="dark"] .news {
+  background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .news ul p {
+  color: var(--text-secondary) !important;
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .news ul p strong {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .news ul p i {
+  color: #149ddd !important;
+}
+
+[data-theme="dark"] .news ul p a {
+  color: #4db8ff !important;
+}
+
+[data-theme="dark"] .news ul p a:hover {
+  color: #37b3ed !important;
+}
+
+/* Contact page improvements */
+[data-theme="dark"] .info-box {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+[data-theme="dark"] .info-box h4 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .info-box p {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .info-box a {
+  color: #4db8ff !important;
+}
+
+/* General improvements for better readability */
+[data-theme="dark"] br {
+  opacity: 1;
+}
+
+[data-theme="dark"] .text-center {
+  color: inherit;
+}
+
+/* Improve card shadows in dark mode */
+[data-theme="dark"] .post,
+[data-theme="dark"] .resume-item,
+[data-theme="dark"] .info-box {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] .post:hover,
+[data-theme="dark"] .resume-item:hover,
+[data-theme="dark"] .info-box:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8) !important;
 }
 
