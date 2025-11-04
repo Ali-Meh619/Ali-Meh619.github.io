@@ -127,69 +127,6 @@ main {
   position: relative;
 }
 
-/* Resume header with logo */
-.resume-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  margin-bottom: 15px;
-}
-
-.company-logo {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  border-radius: 8px;
-  flex-shrink: 0;
-  background: #fff;
-  padding: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.resume-item:hover .company-logo {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.resume-content {
-  flex: 1;
-}
-
-.resume-content h4,
-.resume-content h5,
-.resume-content p {
-  margin-bottom: 5px;
-}
-
-.resume-content h4 {
-  margin-top: 0;
-}
-
-/* Dark mode logo styling */
-[data-theme="dark"] .company-logo {
-  background: var(--bg-tertiary);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .resume-item:hover .company-logo {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-/* Responsive logo sizing */
-@media (max-width: 768px) {
-  .company-logo {
-    width: 50px;
-    height: 50px;
-    padding: 6px;
-  }
-  
-  .resume-header {
-    gap: 15px;
-    margin-bottom: 12px;
-  }
-}
-
 .resume-item:hover {
   transform: translateX(5px);
   border-left-width: 5px;
