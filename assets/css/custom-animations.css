@@ -327,8 +327,8 @@ img {
 # Profile Image Size Adjustment
 --------------------------------------------------------------*/
 #header .profile img {
-  width: 150px !important;
-  height: 150px !important;
+  width: 180px !important;
+  height: 180px !important;
   border: 8px solid #2c2f3f;
   margin: 15px auto;
   display: block;
