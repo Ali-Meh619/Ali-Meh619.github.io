@@ -591,3 +591,44 @@ img {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
 }
 
+/*--------------------------------------------------------------
+# Better Publication Bullet Points
+--------------------------------------------------------------*/
+.post ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+.post ul li {
+  position: relative;
+  padding-left: 30px !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  margin-bottom: 0 !important;
+}
+
+.post ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #149ddd;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+.post:hover ul li::before {
+  color: #37b3ed;
+  transform: translateX(3px);
+}
+
+[data-theme="dark"] .post ul li::before {
+  color: #149ddd;
+}
+
+[data-theme="dark"] .post:hover ul li::before {
+  color: #37b3ed;
+}
+
