@@ -597,14 +597,15 @@ img {
 .post ul {
   list-style: none !important;
   padding-left: 0 !important;
-  margin-bottom: 8px !important;
+  margin-bottom: 10px !important;
+  margin-top: 0 !important;
 }
 
 .post ul li {
   position: relative;
   padding-left: 30px !important;
   font-size: 16px !important;
-  line-height: 1.6 !important;
+  line-height: 1.7 !important;
   margin-bottom: 0 !important;
 }
 
@@ -630,6 +631,66 @@ img {
 
 [data-theme="dark"] .post:hover ul li::before {
   color: #37b3ed;
+}
+
+/*--------------------------------------------------------------
+# Better Publication Alignment and Spacing
+--------------------------------------------------------------*/
+.post p {
+  margin-bottom: 10px !important;
+  margin-top: 0 !important;
+  line-height: 1.6 !important;
+}
+
+.post > div {
+  margin-top: 8px !important;
+  margin-bottom: 0 !important;
+}
+
+.post > div p {
+  margin-bottom: 8px !important;
+  margin-top: 0 !important;
+  line-height: 1.6 !important;
+}
+
+.post > div span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+.post > div span:last-child {
+  margin-right: 0;
+}
+
+.post a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  vertical-align: middle;
+}
+
+.post a:last-child {
+  margin-right: 0;
+}
+
+.post a i {
+  vertical-align: middle;
+}
+
+/* Consistent spacing between publication cards */
+.post + br + .post {
+  margin-top: 0;
+}
+
+/* Better alignment for metadata section */
+.post > div p:first-child {
+  margin-bottom: 8px !important;
 }
 
 /*--------------------------------------------------------------
