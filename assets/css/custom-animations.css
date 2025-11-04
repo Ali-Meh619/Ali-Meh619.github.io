@@ -335,3 +335,259 @@ img {
   object-fit: cover;
 }
 
+/*--------------------------------------------------------------
+# Reading Progress Indicator
+--------------------------------------------------------------*/
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #149ddd, #37b3ed);
+  z-index: 9999;
+  transition: width 0.1s ease;
+  box-shadow: 0 2px 5px rgba(20, 157, 221, 0.5);
+}
+
+/*--------------------------------------------------------------
+# Enhanced Back to Top Button
+--------------------------------------------------------------*/
+.back-to-top {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(20px);
+}
+
+.back-to-top.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(20, 157, 221, 0.4);
+}
+
+.back-to-top i {
+  transition: transform 0.3s ease;
+}
+
+.back-to-top:hover i {
+  transform: translateY(-2px);
+}
+
+/*--------------------------------------------------------------
+# Dark Mode Styles
+--------------------------------------------------------------*/
+[data-theme="dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #3a3a3a;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --border-color: #404040;
+  --card-bg: #2d2d2d;
+  --shadow: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] #main {
+  background-color: var(--bg-primary);
+}
+
+[data-theme="dark"] section {
+  background-color: var(--bg-primary);
+}
+
+[data-theme="dark"] .section-bg {
+  background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .resume-item,
+[data-theme="dark"] .post,
+[data-theme="dark"] .info-box {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  box-shadow: 0 3px 15px var(--shadow);
+}
+
+[data-theme="dark"] .resume-item h4,
+[data-theme="dark"] .post h4,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3 {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] .resume-item p,
+[data-theme="dark"] .post p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .section-title h2 {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .section-title h2::after {
+  background: #149ddd;
+}
+
+[data-theme="dark"] a {
+  color: #149ddd;
+}
+
+[data-theme="dark"] a:hover {
+  color: #37b3ed;
+}
+
+[data-theme="dark"] #hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/me.jpg") top center;
+  background-size: cover;
+}
+
+[data-theme="dark"] #hero:before {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .container,
+[data-theme="dark"] .container-fluid {
+  background-color: transparent;
+}
+
+[data-theme="dark"] .news ul p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .news ul p strong {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .btn-primary {
+  background-color: #149ddd;
+  border-color: #149ddd;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background-color: #37b3ed;
+  border-color: #37b3ed;
+}
+
+/* Dark Mode Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #149ddd;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 4px 15px rgba(20, 157, 221, 0.3);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: #37b3ed;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(20, 157, 221, 0.5);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 1199px) {
+  .theme-toggle {
+    top: 70px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Enhanced Publication Cards with Hover Effects
+--------------------------------------------------------------*/
+.post {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.post::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #149ddd, #37b3ed);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.post:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: #f8f9fa;
+}
+
+.post:hover::before {
+  transform: scaleY(1);
+}
+
+.post h4,
+.post li {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.post:hover h4,
+.post:hover li {
+  color: #149ddd;
+}
+
+.post .publication-links {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.post:hover .publication-links {
+  opacity: 1;
+  max-height: 100px;
+  margin-top: 10px;
+}
+
+[data-theme="dark"] .post {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .post:hover {
+  background: var(--bg-tertiary);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+

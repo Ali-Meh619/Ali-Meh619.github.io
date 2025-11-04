@@ -259,4 +259,78 @@
    */
   new PureCounter();
 
+  /**
+   * Reading Progress Indicator
+   */
+  const readingProgress = document.createElement('div');
+  readingProgress.className = 'reading-progress';
+  document.body.appendChild(readingProgress);
+
+  function updateReadingProgress() {
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const progress = (scrollTop / (documentHeight - windowHeight)) * 100;
+    readingProgress.style.width = Math.min(progress, 100) + '%';
+  }
+
+  window.addEventListener('scroll', updateReadingProgress);
+  window.addEventListener('resize', updateReadingProgress);
+  updateReadingProgress();
+
+  /**
+   * Enhanced Back to Top Button
+   */
+  const backToTopButton = document.querySelector('.back-to-top');
+  if (backToTopButton) {
+    function toggleBackToTop() {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add('active');
+      } else {
+        backToTopButton.classList.remove('active');
+      }
+    }
+
+    window.addEventListener('scroll', toggleBackToTop);
+    toggleBackToTop();
+
+    backToTopButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  /**
+   * Dark Mode Toggle
+   */
+  const themeToggle = document.createElement('button');
+  themeToggle.className = 'theme-toggle';
+  themeToggle.setAttribute('aria-label', 'Toggle dark mode');
+  themeToggle.innerHTML = '<i class="bi bi-moon-fill"></i>';
+  document.body.appendChild(themeToggle);
+
+  // Check for saved theme preference or default to light mode
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  if (currentTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    themeToggle.innerHTML = '<i class="bi bi-sun-fill"></i>';
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    if (newTheme === 'dark') {
+      themeToggle.innerHTML = '<i class="bi bi-sun-fill"></i>';
+    } else {
+      themeToggle.innerHTML = '<i class="bi bi-moon-fill"></i>';
+    }
+  });
+
 })()
