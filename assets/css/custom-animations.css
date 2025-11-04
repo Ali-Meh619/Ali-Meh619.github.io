@@ -327,8 +327,8 @@ img {
 # Profile Image Size Adjustment
 --------------------------------------------------------------*/
 #header .profile img {
-  width: 140px !important;
-  height: 140px !important;
+  width: 150px !important;
+  height: 150px !important;
   border: 8px solid #2c2f3f;
   margin: 15px auto;
   display: block;
@@ -602,7 +602,7 @@ img {
 
 .post ul li {
   position: relative;
-  padding-left: 35px !important;
+  padding-left: 30px !important;
   font-size: 16px !important;
   line-height: 1.6 !important;
   margin-bottom: 0 !important;
@@ -611,7 +611,7 @@ img {
 .post ul li::before {
   content: '▸';
   position: absolute;
-  left: 5px;
+  left: 0;
   color: #149ddd;
   font-size: 18px;
   font-weight: bold;
