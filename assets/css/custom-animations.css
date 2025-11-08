@@ -964,67 +964,37 @@ img {
   margin-top: 30px;
 }
 
-.publication-year::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: linear-gradient(180deg, #149ddd, #37b3ed);
-  border-radius: 2px;
-}
-
 .publication-year h3 {
   font-size: 32px;
   font-weight: 700;
   color: #173b6c;
   margin: 0;
-  margin-left: 20px;
-  padding: 12px 25px;
+  padding: 15px 30px;
   display: inline-block;
   position: relative;
-  background: linear-gradient(135deg, rgba(20, 157, 221, 0.1), rgba(55, 179, 237, 0.05));
-  border-radius: 8px;
-  border-left: 3px solid #149ddd;
-  box-shadow: 0 2px 8px rgba(20, 157, 221, 0.15);
+  background: linear-gradient(135deg, rgba(20, 157, 221, 0.12), rgba(55, 179, 237, 0.08));
+  border-radius: 10px;
+  border-left: 4px solid #149ddd;
+  box-shadow: 0 3px 10px rgba(20, 157, 221, 0.2);
   transition: all 0.3s ease;
 }
 
 .publication-year h3:hover {
   transform: translateX(5px);
-  box-shadow: 0 4px 12px rgba(20, 157, 221, 0.25);
-  background: linear-gradient(135deg, rgba(20, 157, 221, 0.15), rgba(55, 179, 237, 0.1));
-}
-
-.publication-year h3::after {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  left: 25px;
-  width: 40px;
-  height: 3px;
-  background: linear-gradient(90deg, #149ddd, #37b3ed);
-  border-radius: 2px;
-}
-
-[data-theme="dark"] .publication-year::before {
-  background: linear-gradient(180deg, #149ddd, #37b3ed);
+  box-shadow: 0 5px 15px rgba(20, 157, 221, 0.3);
+  background: linear-gradient(135deg, rgba(20, 157, 221, 0.18), rgba(55, 179, 237, 0.12));
+  border-left-width: 5px;
 }
 
 [data-theme="dark"] .publication-year h3 {
   color: var(--text-primary);
-  background: linear-gradient(135deg, rgba(20, 157, 221, 0.2), rgba(55, 179, 237, 0.1));
+  background: linear-gradient(135deg, rgba(20, 157, 221, 0.25), rgba(55, 179, 237, 0.15));
   border-left-color: #149ddd;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="dark"] .publication-year h3:hover {
-  background: linear-gradient(135deg, rgba(20, 157, 221, 0.25), rgba(55, 179, 237, 0.15));
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-[data-theme="dark"] .publication-year h3::after {
-  background: linear-gradient(90deg, #149ddd, #37b3ed);
+  background: linear-gradient(135deg, rgba(20, 157, 221, 0.3), rgba(55, 179, 237, 0.2));
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
 }
 
