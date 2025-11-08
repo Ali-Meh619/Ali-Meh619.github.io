@@ -950,3 +950,49 @@ img {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8) !important;
 }
 
+/*--------------------------------------------------------------
+# Publication Year Headers
+--------------------------------------------------------------*/
+.publication-year {
+  margin-top: 40px;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #149ddd;
+  position: relative;
+}
+
+.publication-year:first-child {
+  margin-top: 20px;
+}
+
+.publication-year h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #173b6c;
+  margin: 0;
+  display: inline-block;
+  position: relative;
+}
+
+.publication-year h3::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: #149ddd;
+}
+
+[data-theme="dark"] .publication-year {
+  border-bottom-color: #149ddd;
+}
+
+[data-theme="dark"] .publication-year h3 {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .publication-year h3::after {
+  background: #149ddd;
+}
+
