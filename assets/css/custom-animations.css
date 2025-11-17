@@ -661,6 +661,38 @@ img {
   vertical-align: middle;
 }
 
+/* Center the separator line between Paper and GitHub */
+.post > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+
+.post > div p {
+  width: 100%;
+  margin-bottom: 8px !important;
+  margin-top: 0 !important;
+  line-height: 1.6 !important;
+}
+
+/* Style the separator */
+.post > div .link-separator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  margin: 0 10px;
+  vertical-align: middle;
+  line-height: 1;
+  height: 100%;
+  font-size: 14px;
+}
+
+[data-theme="dark"] .post > div .link-separator {
+  color: #888;
+}
+
 .post > div span:last-child {
   margin-right: 0;
 }
