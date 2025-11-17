@@ -676,17 +676,34 @@ img {
   line-height: 1.6 !important;
 }
 
-/* Style the separator */
+.post > div > span:has(a) {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.post > div > span:has(a):first-of-type {
+  margin-right: 0;
+}
+
+.post > div > span:has(a):last-of-type {
+  margin-left: 0;
+}
+
+/* Style the separator - centered between links with equal spacing */
 .post > div .link-separator {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: #999;
-  margin: 0 10px;
+  margin-left: 12px;
+  margin-right: 12px;
+  padding: 0;
   vertical-align: middle;
   line-height: 1;
-  height: 100%;
   font-size: 14px;
+  flex-shrink: 0;
+  height: 100%;
 }
 
 [data-theme="dark"] .post > div .link-separator {
