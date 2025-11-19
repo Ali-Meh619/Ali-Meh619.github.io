@@ -345,6 +345,7 @@
   let updateGraphTheme;
 
   if (container) {
+  if (container) {
     const nodes = new vis.DataSet([
       // --- CLUSTER 1: Core ML & Deep Learning (Left) ---
       { id: 1, label: 'Machine Learning', group: 'core', value: 35 },
@@ -363,7 +364,9 @@
       { id: 12, label: 'Time-Series', group: 'method', value: 18 },
       { id: 13, label: 'Unsupervised', group: 'method', value: 18 },
       
-      // --- CLUSTER 2: Tools, Languages & Frameworks (Right) ---
+      // --- CLUSTER 2: Software Skills (Right) ---
+      { id: 100, label: 'Software Eng', group: 'software_hub', value: 40 }, // Central Hub
+      
       { id: 20, label: 'Python', group: 'tool', value: 25 },
       { id: 21, label: 'PyTorch', group: 'tool', value: 22 },
       { id: 22, label: 'TensorFlow', group: 'tool', value: 20 },
@@ -376,38 +379,52 @@
     ]);
 
     const edges = new vis.DataSet([
-      // Core Connections
-      { from: 1, to: 2 }, // ML <-> Deep Learning
-      { from: 1, to: 11 }, // ML -> Optimization
-      { from: 1, to: 12 }, // ML -> Time-Series
-      { from: 1, to: 13 }, // ML -> Unsupervised
+      // --- Software Engineering Hub Connections ---
+      // All programming languages/tools connect to the Software Eng Hub
+      { from: 100, to: 20 },  // Software Eng -> Python
+      { from: 100, to: 26 },  // Software Eng -> C/C++
+      { from: 100, to: 27 },  // Software Eng -> MATLAB
+      { from: 100, to: 25 },  // Software Eng -> SQL
+      { from: 100, to: 24 },  // Software Eng -> Docker/AWS
+      { from: 100, to: 28 },  // Software Eng -> Git/GitHub
       
-      { from: 2, to: 3 }, // DL -> LLMs
-      { from: 2, to: 5 }, // DL -> GNNs
-      { from: 2, to: 6 }, // DL -> Transformers
-      { from: 2, to: 10 }, // DL -> CNNs/RNNs
+      // --- The MAIN Bridge ---
+      // Software Engineering Powers Machine Learning
+      { from: 100, to: 1 },   // Software Eng -> Machine Learning (Primary Bridge)
+
+      // --- Core ML Hierarchy ---
+      { from: 1, to: 2 },   // Machine Learning -> Deep Learning
+      { from: 2, to: 3 },   // Deep Learning -> LLMs
+      { from: 3, to: 4 },   // LLMs -> Agentic AI
       
-      // Advanced AI Connections
-      { from: 3, to: 4 }, // LLMs -> Agentic AI
-      { from: 3, to: 7 }, // LLMs -> RAG
-      { from: 3, to: 9 }, // LLMs -> Fine-tuning
-      { from: 4, to: 8 }, // Agentic AI -> MCP
+      // ML Branches
+      { from: 1, to: 11 },  // ML -> Optimization
+      { from: 1, to: 12 },  // ML -> Time-Series
+      { from: 1, to: 13 },  // ML -> Unsupervised
       
-      // Bridges to Tools (Cluster 1 -> Cluster 2)
-      { from: 1, to: 20 }, // ML -> Python
-      { from: 2, to: 21 }, // DL -> PyTorch
-      { from: 2, to: 22 }, // DL -> TensorFlow
-      { from: 4, to: 23 }, // Agentic AI -> LangChain
-      { from: 4, to: 24 }, // Agentic AI -> Docker/AWS (Deployment)
-      { from: 1, to: 25 }, // ML -> SQL
-      { from: 11, to: 27 }, // Optimization -> MATLAB
+      // Deep Learning Architectures
+      { from: 2, to: 5 },   // DL -> GNNs
+      { from: 2, to: 6 },   // DL -> Transformers
+      { from: 2, to: 10 },  // DL -> CNNs / RNNs
       
-      // Tool Connections
+      // LLM & Agent Ecosystem
+      { from: 3, to: 7 },   // LLMs -> RAG
+      { from: 3, to: 9 },   // LLMs -> Fine-tuning
+      { from: 3, to: 23 },  // LLMs -> LangChain (Framework)
+      { from: 4, to: 8 },   // Agentic AI -> MCP (Protocol)
+      { from: 4, to: 23 },  // Agentic AI -> LangChain
+      
+      // Specific Tech Alignments
+      // (Connections that make sense technically but don't clutter the hub)
       { from: 20, to: 21 }, // Python -> PyTorch
-      { from: 20, to: 22 }, // Python -> TF
+      { from: 20, to: 22 }, // Python -> TensorFlow
       { from: 20, to: 23 }, // Python -> LangChain
-      { from: 20, to: 26 }, // Python -> C++ (integration)
-      { from: 20, to: 28 }, // Python -> Git
+      
+      { from: 21, to: 2 },  // PyTorch -> Deep Learning
+      { from: 22, to: 2 },  // TensorFlow -> Deep Learning
+      { from: 5, to: 21 },  // GNNs -> PyTorch
+      { from: 11, to: 26 }, // Optimization -> C/C++ (Performance link)
+      { from: 11, to: 27 }, // Optimization -> MATLAB (Traditional link)
     ]);
 
     const getGraphOptions = (isDark) => {
@@ -418,6 +435,7 @@
       const coreColor = '#1976D2';   // Strong Blue
       const methodColor = '#7B1FA2'; // Purple
       const toolColor = '#00796B';   // Teal
+      const softwareHubColor = '#E64A19'; // Deep Orange for the Hub
       
       // Edge Colors
       const edgeColor = isDark ? 'rgba(100, 181, 246, 0.4)' : 'rgba(45, 52, 54, 0.2)'; // Matching Blue tint
@@ -460,7 +478,7 @@
           barnesHut: {
             gravitationalConstant: -3000,
             springConstant: 0.04,
-            springLength: 120,
+            springLength: 130,
             damping: 0.09
           }
         },
@@ -476,6 +494,10 @@
           tool: { 
             color: { background: toolColor, border: '#004D40' }, 
             font: { color: textColor } 
+          },
+          software_hub: {
+            color: { background: softwareHubColor, border: '#BF360C' },
+            font: { size: 26, color: textColor, face: 'Poppins, sans-serif', strokeWidth: 0 }
           }
         },
         interaction: {
