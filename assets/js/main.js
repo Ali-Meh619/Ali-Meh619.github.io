@@ -347,92 +347,127 @@
   if (container) {
     const nodes = new vis.DataSet([
       // Core Areas
-      { id: 1, label: 'Machine Learning', group: 'core', value: 25 },
-      { id: 2, label: 'Wireless Comm', group: 'core', value: 20 },
+      { id: 1, label: 'Machine Learning', group: 'core', value: 30 },
+      { id: 2, label: 'Wireless Comm', group: 'core', value: 25 },
       
-      // AI Skills
-      { id: 3, label: 'LLMs', group: 'ai', value: 15 },
-      { id: 4, label: 'GNNs', group: 'ai', value: 18 },
-      { id: 5, label: 'Deep Learning', group: 'ai', value: 15 },
-      { id: 6, label: 'Computer Vision', group: 'ai', value: 12 },
-      { id: 7, label: 'Time Series', group: 'ai', value: 12 },
+      // AI Skills & Architectures
+      { id: 3, label: 'LLMs', group: 'ai', value: 22 },
+      { id: 4, label: 'Agentic AI', group: 'ai', value: 20 },
+      { id: 5, label: 'GNNs', group: 'ai', value: 18 },
+      { id: 6, label: 'Transformers', group: 'ai', value: 18 },
+      { id: 7, label: 'RAG', group: 'ai', value: 16 },
+      { id: 8, label: 'Deep Learning', group: 'ai', value: 18 },
+      { id: 9, label: 'Time Series', group: 'ai', value: 15 },
+      { id: 10, label: 'CNNs/RNNs', group: 'ai', value: 14 },
       
-      // Tools & Frameworks
-      { id: 8, label: 'PyTorch', group: 'tool', value: 15 },
-      { id: 9, label: 'TensorFlow', group: 'tool', value: 10 },
-      { id: 10, label: 'Docker', group: 'tool', value: 10 },
-      { id: 11, label: 'AWS', group: 'tool', value: 8 },
-      { id: 12, label: 'Python', group: 'tool', value: 15 },
+      // Frameworks & Tools
+      { id: 11, label: 'LangChain', group: 'tool', value: 14 },
+      { id: 12, label: 'PyTorch', group: 'tool', value: 16 },
+      { id: 13, label: 'Docker/AWS', group: 'tool', value: 14 },
+      { id: 14, label: 'Python', group: 'tool', value: 18 },
+      { id: 15, label: 'SQL', group: 'tool', value: 10 },
       
       // Specific Concepts
-      { id: 13, label: 'Optimization', group: 'concept', value: 10 },
-      { id: 14, label: 'Agents', group: 'concept', value: 12 },
-      { id: 15, label: 'Mamba', group: 'concept', value: 10 },
-      { id: 16, label: 'Graph Transformer', group: 'concept', value: 10 }
+      { id: 16, label: 'MCP', group: 'concept', value: 14 },
+      { id: 17, label: 'Optimization', group: 'concept', value: 12 },
+      { id: 18, label: 'Fine-tuning', group: 'concept', value: 12 },
+      { id: 19, label: 'Unsupervised', group: 'concept', value: 12 }
     ]);
 
     const edges = new vis.DataSet([
-      // Connections to Core
-      { from: 1, to: 3 }, // ML -> LLMs
-      { from: 1, to: 4 }, // ML -> GNNs
-      { from: 1, to: 5 }, // ML -> Deep Learning
-      { from: 1, to: 6 }, // ML -> Computer Vision
-      { from: 1, to: 7 }, // ML -> Time Series
-      { from: 1, to: 12 }, // ML -> Python
+      // Core Connections
+      { from: 1, to: 3 },  // ML -> LLMs
+      { from: 1, to: 5 },  // ML -> GNNs
+      { from: 1, to: 8 },  // ML -> Deep Learning
+      { from: 1, to: 14 }, // ML -> Python
+      { from: 2, to: 17 }, // Wireless -> Optimization
+      { from: 2, to: 5 },  // Wireless -> GNNs (applied)
       
-      { from: 2, to: 13 }, // Wireless -> Optimization
-      { from: 2, to: 4 },  // Wireless -> GNNs (applied)
+      // LLM & Agentic Ecosystem
+      { from: 3, to: 4 },  // LLMs -> Agentic AI
+      { from: 3, to: 6 },  // LLMs -> Transformers
+      { from: 3, to: 7 },  // LLMs -> RAG
+      { from: 3, to: 18 }, // LLMs -> Fine-tuning
+      { from: 4, to: 11 }, // Agentic AI -> LangChain
+      { from: 4, to: 16 }, // Agentic AI -> MCP
       
-      // Skill Connections
-      { from: 3, to: 14 }, // LLMs -> Agents
-      { from: 4, to: 16 }, // GNNs -> Graph Transformer
-      { from: 5, to: 8 },  // DL -> PyTorch
-      { from: 5, to: 9 },  // DL -> TensorFlow
-      { from: 12, to: 8 }, // Python -> PyTorch
-      { from: 4, to: 15 }, // GNNs -> Mamba
+      // Deep Learning & Architectures
+      { from: 8, to: 6 },  // DL -> Transformers
+      { from: 8, to: 10 }, // DL -> CNNs/RNNs
+      { from: 8, to: 12 }, // DL -> PyTorch
+      { from: 8, to: 19 }, // DL -> Unsupervised
       
-      // Tool Connections
-      { from: 10, to: 11 }, // Docker -> AWS
-      { from: 1, to: 13 },  // ML -> Optimization
+      // Applications & Tools
+      { from: 9, to: 10 }, // Time Series -> RNNs
+      { from: 11, to: 14 },// LangChain -> Python
+      { from: 13, to: 1 }, // Docker/AWS -> ML (deployment)
+      { from: 15, to: 1 }, // SQL -> ML (data)
     ]);
 
     const getGraphOptions = (isDark) => {
-      const textColor = isDark ? '#e0e0e0' : '#333333';
-      const coreColor = '#149ddd';
-      const aiColor = '#37b3ed';
-      const toolColor = isDark ? '#6c757d' : '#adb5bd'; // Lighter in dark mode for contrast? Or distinct
+      // Enhanced colors for better visibility
+      const textColor = isDark ? '#f0f0f0' : '#1a1a1a';
+      const coreColor = '#149ddd'; // Brand Blue
+      const aiColor = '#6c5ce7';   // Purple/Indigo
+      const toolColor = '#00b894'; // Teal/Green
+      const conceptColor = '#fdcb6e'; // Orange/Yellow
       
       return {
         nodes: {
           shape: 'dot',
           font: {
-            size: 16,
-            face: 'Open Sans',
-            color: textColor
+            size: 18,
+            face: 'Poppins, sans-serif', // Improved font
+            color: textColor,
+            strokeWidth: 2, // Outline for text readability
+            strokeColor: isDark ? '#000000' : '#ffffff'
           },
           borderWidth: 2,
-          shadow: true
+          shadow: {
+            enabled: true,
+            color: 'rgba(0,0,0,0.2)',
+            size: 10,
+            x: 5,
+            y: 5
+          }
         },
         edges: {
-          width: 1,
-          color: { color: isDark ? '#555555' : '#cccccc', highlight: '#149ddd' },
+          width: 2, // Thicker edges
+          color: { 
+            color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.2)', 
+            highlight: '#149ddd',
+            hover: '#149ddd'
+          },
           smooth: {
-            type: 'continuous'
+            type: 'continuous',
+            roundness: 0.5
           }
         },
         physics: {
           stabilization: false,
           barnesHut: {
-            gravitationalConstant: -2000,
+            gravitationalConstant: -3000,
             springConstant: 0.04,
-            springLength: 95
+            springLength: 120 // More spread out
           }
         },
         groups: {
-          core: { color: { background: '#149ddd', border: '#0a6ca3' }, font: { size: 20, color: '#ffffff' } },
-          ai:   { color: { background: '#37b3ed', border: '#149ddd' }, font: { color: textColor } },
-          tool: { color: { background: isDark ? '#444444' : '#e9ecef', border: '#adb5bd' }, font: { color: textColor } },
-          concept: { color: { background: '#ffc107', border: '#d39e00' }, font: { color: isDark ? '#000' : '#333' } }
+          core: { 
+            color: { background: coreColor, border: '#0a6ca3' }, 
+            font: { size: 24, color: '#ffffff', strokeWidth: 0 } 
+          },
+          ai: { 
+            color: { background: aiColor, border: '#5541d1' }, 
+            font: { color: textColor } 
+          },
+          tool: { 
+            color: { background: toolColor, border: '#008c70' }, 
+            font: { color: textColor } 
+          },
+          concept: { 
+            color: { background: conceptColor, border: '#d39e00' }, 
+            font: { color: textColor } 
+          }
         },
         interaction: {
           hover: true,
