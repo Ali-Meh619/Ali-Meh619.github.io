@@ -423,7 +423,6 @@
       // LLM & Agent Ecosystem
       { from: 3, to: 7 },   // LLMs -> RAG
       { from: 3, to: 9 },   // LLMs -> Fine-tuning
-      { from: 3, to: 23 },  // LLMs -> LangChain
       { from: 4, to: 8 },   // Agentic AI -> MCP
       
       // Agentic AI Frameworks
@@ -441,8 +440,8 @@
     ]);
 
     const getGraphOptions = (isDark) => {
-      // Text Color: Dark Grey (Light Mode) vs Bright Blue (Dark Mode)
-      const textColor = isDark ? '#64b5f6' : '#2d3436'; 
+      // Text Color: Dark Grey (Light Mode) vs Darker Blue (Dark Mode)
+      const textColor = isDark ? '#1E88E5' : '#2d3436'; // Darker, Richer Blue for dark mode
       
       // Palette
       const coreColor = '#1976D2';   // Strong Blue
@@ -489,9 +488,9 @@
         physics: {
           stabilization: false,
           barnesHut: {
-            gravitationalConstant: -3500, // Stronger repulsion
-            springConstant: 0.02,        // Looser springs
-            springLength: 160,           // Longer connections
+            gravitationalConstant: -4000, // Stronger repulsion for wider layout
+            springConstant: 0.02,
+            springLength: 180,           // Even longer connections
             damping: 0.09
           }
         },
