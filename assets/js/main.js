@@ -363,6 +363,15 @@
       { id: 12, label: 'Time-Series', group: 'method', value: 18 },
       { id: 13, label: 'Unsupervised', group: 'method', value: 18 },
       
+      // Optimization Tools
+      { id: 14, label: 'MOSEK', group: 'tool', value: 15 },
+      { id: 15, label: 'CVX', group: 'tool', value: 15 },
+
+      // Agentic Tools
+      { id: 16, label: 'LangGraph', group: 'tool', value: 18 },
+      { id: 17, label: 'AutoGen', group: 'tool', value: 18 },
+      { id: 18, label: 'ADK', group: 'tool', value: 16 },
+
       // --- CLUSTER 2: Software Skills (Right) ---
       { id: 100, label: 'Software Eng', group: 'software_hub', value: 40 }, // Central Hub
       
@@ -379,7 +388,6 @@
 
     const edges = new vis.DataSet([
       // --- Software Engineering Hub Connections ---
-      // All programming languages/tools connect to the Software Eng Hub
       { from: 100, to: 20 },  // Software Eng -> Python
       { from: 100, to: 26 },  // Software Eng -> C/C++
       { from: 100, to: 27 },  // Software Eng -> MATLAB
@@ -388,8 +396,7 @@
       { from: 100, to: 28 },  // Software Eng -> Git/GitHub
       
       // --- The MAIN Bridge ---
-      // Software Engineering Powers Machine Learning
-      { from: 100, to: 1 },   // Software Eng -> Machine Learning (Primary Bridge)
+      { from: 100, to: 1 },   // Software Eng -> Machine Learning
 
       // --- Core ML Hierarchy ---
       { from: 1, to: 2 },   // Machine Learning -> Deep Learning
@@ -401,6 +408,13 @@
       { from: 1, to: 12 },  // ML -> Time-Series
       { from: 1, to: 13 },  // ML -> Unsupervised
       
+      // Optimization Connections (Tools)
+      { from: 11, to: 14 }, // Optimization -> MOSEK
+      { from: 11, to: 15 }, // Optimization -> CVX
+      { from: 11, to: 27 }, // Optimization -> MATLAB
+      { from: 27, to: 14 }, // MATLAB -> MOSEK
+      { from: 27, to: 15 }, // MATLAB -> CVX
+      
       // Deep Learning Architectures
       { from: 2, to: 5 },   // DL -> GNNs
       { from: 2, to: 6 },   // DL -> Transformers
@@ -409,21 +423,21 @@
       // LLM & Agent Ecosystem
       { from: 3, to: 7 },   // LLMs -> RAG
       { from: 3, to: 9 },   // LLMs -> Fine-tuning
-      { from: 3, to: 23 },  // LLMs -> LangChain (Framework)
-      { from: 4, to: 8 },   // Agentic AI -> MCP (Protocol)
+      { from: 3, to: 23 },  // LLMs -> LangChain
+      { from: 4, to: 8 },   // Agentic AI -> MCP
+      
+      // Agentic AI Frameworks
       { from: 4, to: 23 },  // Agentic AI -> LangChain
+      { from: 4, to: 16 },  // Agentic AI -> LangGraph
+      { from: 4, to: 17 },  // Agentic AI -> AutoGen
+      { from: 4, to: 18 },  // Agentic AI -> ADK
       
       // Specific Tech Alignments
-      // (Connections that make sense technically but don't clutter the hub)
       { from: 20, to: 21 }, // Python -> PyTorch
       { from: 20, to: 22 }, // Python -> TensorFlow
-      { from: 20, to: 23 }, // Python -> LangChain
       
       { from: 21, to: 2 },  // PyTorch -> Deep Learning
       { from: 22, to: 2 },  // TensorFlow -> Deep Learning
-      { from: 5, to: 21 },  // GNNs -> PyTorch
-      { from: 11, to: 26 }, // Optimization -> C/C++ (Performance link)
-      { from: 11, to: 27 }, // Optimization -> MATLAB (Traditional link)
     ]);
 
     const getGraphOptions = (isDark) => {
@@ -475,9 +489,9 @@
         physics: {
           stabilization: false,
           barnesHut: {
-            gravitationalConstant: -3000,
-            springConstant: 0.04,
-            springLength: 130,
+            gravitationalConstant: -3500, // Stronger repulsion
+            springConstant: 0.02,        // Looser springs
+            springLength: 160,           // Longer connections
             damping: 0.09
           }
         },
