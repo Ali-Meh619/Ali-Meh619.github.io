@@ -346,77 +346,82 @@
 
   if (container) {
     const nodes = new vis.DataSet([
-      // --- CLUSTER 1: Technical / ML (Left/Center) ---
-      { id: 1, label: 'Machine Learning', group: 'core_tech', value: 35 },
-      { id: 2, label: 'Generative AI', group: 'core_tech', value: 30 },
-      { id: 3, label: 'Research', group: 'core_tech', value: 28 },
+      // --- CLUSTER 1: Core ML & Deep Learning (Left) ---
+      { id: 1, label: 'Machine Learning', group: 'core', value: 35 },
+      { id: 2, label: 'Deep Learning', group: 'core', value: 32 },
+      { id: 3, label: 'LLMs', group: 'core', value: 30 },
+      { id: 4, label: 'Agentic AI', group: 'core', value: 28 },
       
-      // Deep Tech
-      { id: 4, label: 'LLMs', group: 'ai_tech', value: 25 },
-      { id: 5, label: 'Agentic AI', group: 'ai_tech', value: 24 },
-      { id: 6, label: 'GNNs', group: 'ai_tech', value: 20 },
-      { id: 7, label: 'RAG', group: 'ai_tech', value: 18 },
-      { id: 8, label: 'MCP', group: 'ai_tech', value: 18 },
-      { id: 9, label: 'Transformers', group: 'ai_tech', value: 18 },
+      // Architectures & Methods
+      { id: 5, label: 'GNNs', group: 'method', value: 22 },
+      { id: 6, label: 'Transformers', group: 'method', value: 22 },
+      { id: 7, label: 'RAG', group: 'method', value: 20 },
+      { id: 8, label: 'MCP', group: 'method', value: 18 },
+      { id: 9, label: 'Fine-tuning', group: 'method', value: 18 },
+      { id: 10, label: 'CNNs / RNNs', group: 'method', value: 18 },
+      { id: 11, label: 'Optimization', group: 'method', value: 18 },
+      { id: 12, label: 'Time-Series', group: 'method', value: 18 },
+      { id: 13, label: 'Unsupervised', group: 'method', value: 18 },
       
-      // Tools & Code
-      { id: 10, label: 'Python', group: 'tools', value: 22 },
-      { id: 11, label: 'PyTorch', group: 'tools', value: 18 },
-      { id: 12, label: 'LangChain', group: 'tools', value: 16 },
-      { id: 13, label: 'Docker', group: 'tools', value: 15 },
-      
-      // --- CLUSTER 2: Soft Skills / Process (Right/Top) ---
-      { id: 20, label: 'Problem Solving', group: 'soft', value: 22 },
-      { id: 21, label: 'Leadership', group: 'soft', value: 20 },
-      { id: 22, label: 'Collaboration', group: 'soft', value: 20 },
-      { id: 23, label: 'Project Mgmt', group: 'soft', value: 18 },
-      { id: 24, label: 'Innovation', group: 'soft', value: 18 },
-      { id: 25, label: 'Communication', group: 'soft', value: 18 }
+      // --- CLUSTER 2: Tools, Languages & Frameworks (Right) ---
+      { id: 20, label: 'Python', group: 'tool', value: 25 },
+      { id: 21, label: 'PyTorch', group: 'tool', value: 22 },
+      { id: 22, label: 'TensorFlow', group: 'tool', value: 20 },
+      { id: 23, label: 'LangChain', group: 'tool', value: 20 },
+      { id: 24, label: 'Docker / AWS', group: 'tool', value: 18 },
+      { id: 25, label: 'SQL', group: 'tool', value: 15 },
+      { id: 26, label: 'C/C++', group: 'tool', value: 15 },
+      { id: 27, label: 'MATLAB', group: 'tool', value: 15 },
+      { id: 28, label: 'Git / GitHub', group: 'tool', value: 15 }
     ]);
 
     const edges = new vis.DataSet([
-      // Tech Cluster Connections
-      { from: 1, to: 2 }, // ML <-> GenAI
-      { from: 1, to: 10 }, // ML -> Python
-      { from: 1, to: 11 }, // ML -> PyTorch
-      { from: 2, to: 4 }, // GenAI -> LLMs
-      { from: 2, to: 5 }, // GenAI -> Agentic AI
+      // Core Connections
+      { from: 1, to: 2 }, // ML <-> Deep Learning
+      { from: 1, to: 11 }, // ML -> Optimization
+      { from: 1, to: 12 }, // ML -> Time-Series
+      { from: 1, to: 13 }, // ML -> Unsupervised
       
-      { from: 4, to: 9 }, // LLMs -> Transformers
-      { from: 4, to: 7 }, // LLMs -> RAG
-      { from: 5, to: 8 }, // Agentic AI -> MCP
-      { from: 5, to: 12 }, // Agentic AI -> LangChain
-      { from: 1, to: 6 }, // ML -> GNNs
+      { from: 2, to: 3 }, // DL -> LLMs
+      { from: 2, to: 5 }, // DL -> GNNs
+      { from: 2, to: 6 }, // DL -> Transformers
+      { from: 2, to: 10 }, // DL -> CNNs/RNNs
       
-      { from: 10, to: 13 }, // Python -> Docker
+      // Advanced AI Connections
+      { from: 3, to: 4 }, // LLMs -> Agentic AI
+      { from: 3, to: 7 }, // LLMs -> RAG
+      { from: 3, to: 9 }, // LLMs -> Fine-tuning
+      { from: 4, to: 8 }, // Agentic AI -> MCP
       
-      // Soft Skills Cluster Connections
-      { from: 20, to: 24 }, // Problem Solving <-> Innovation
-      { from: 21, to: 23 }, // Leadership <-> Project Mgmt
-      { from: 21, to: 22 }, // Leadership <-> Collaboration
-      { from: 22, to: 25 }, // Collaboration <-> Communication
+      // Bridges to Tools (Cluster 1 -> Cluster 2)
+      { from: 1, to: 20 }, // ML -> Python
+      { from: 2, to: 21 }, // DL -> PyTorch
+      { from: 2, to: 22 }, // DL -> TensorFlow
+      { from: 4, to: 23 }, // Agentic AI -> LangChain
+      { from: 4, to: 24 }, // Agentic AI -> Docker/AWS (Deployment)
+      { from: 1, to: 25 }, // ML -> SQL
+      { from: 11, to: 27 }, // Optimization -> MATLAB
       
-      // Bridges between Tech and Soft Skills
-      { from: 3, to: 1 },  // Research <-> ML
-      { from: 3, to: 24 }, // Research <-> Innovation (Bridge)
-      { from: 5, to: 20 }, // Agentic AI <-> Problem Solving (Bridge)
-      { from: 23, to: 13 }, // Project Mgmt <-> Docker (DevOps link)
-      { from: 21, to: 3 },  // Leadership <-> Research (Leading research)
+      // Tool Connections
+      { from: 20, to: 21 }, // Python -> PyTorch
+      { from: 20, to: 22 }, // Python -> TF
+      { from: 20, to: 23 }, // Python -> LangChain
+      { from: 20, to: 26 }, // Python -> C++ (integration)
+      { from: 20, to: 28 }, // Python -> Git
     ]);
 
     const getGraphOptions = (isDark) => {
-      // Revised Palette for "Premium" Look & Dark Mode Clarity
-      const textColor = isDark ? '#ffffff' : '#2d3436'; // Pure White for dark mode, Dark Grey for light
+      // Text Color: Dark Grey (Light Mode) vs Bright Blue (Dark Mode)
+      const textColor = isDark ? '#64b5f6' : '#2d3436'; 
       
-      // Vibrant, Modern Colors
-      const techBlue = '#3498db';    // Bright Blue
-      const deepPurple = '#9b59b6';  // Amethyst
-      const toolGreen = '#1abc9c';   // Turquoise
-      const softOrange = '#e67e22';  // Carrot
+      // Palette
+      const coreColor = '#1976D2';   // Strong Blue
+      const methodColor = '#7B1FA2'; // Purple
+      const toolColor = '#00796B';   // Teal
       
       // Edge Colors
-      const edgeColor = isDark ? 'rgba(255, 255, 255, 0.4)' : 'rgba(45, 52, 54, 0.2)';
-      const edgeHighlight = '#e74c3c'; // Reddish highlight for interaction
+      const edgeColor = isDark ? 'rgba(100, 181, 246, 0.4)' : 'rgba(45, 52, 54, 0.2)'; // Matching Blue tint
+      const edgeHighlight = '#FF5722'; // Deep Orange
 
       return {
         nodes: {
@@ -425,8 +430,8 @@
             size: 18,
             face: 'Poppins, sans-serif',
             color: textColor,
-            strokeWidth: isDark ? 0 : 3, // No stroke in dark mode
-            strokeColor: '#ffffff',      // Only for light mode
+            strokeWidth: isDark ? 0 : 3, 
+            strokeColor: '#ffffff',      
             vadjust: -1
           },
           borderWidth: 2,
@@ -455,25 +460,21 @@
           barnesHut: {
             gravitationalConstant: -3000,
             springConstant: 0.04,
-            springLength: 130,
+            springLength: 120,
             damping: 0.09
           }
         },
         groups: {
-          core_tech: { 
-            color: { background: techBlue, border: '#2980b9' }, 
+          core: { 
+            color: { background: coreColor, border: '#0D47A1' }, 
             font: { size: 24, color: textColor } 
           },
-          ai_tech: { 
-            color: { background: deepPurple, border: '#8e44ad' }, 
+          method: { 
+            color: { background: methodColor, border: '#4A148C' }, 
             font: { color: textColor } 
           },
-          tools: { 
-            color: { background: toolGreen, border: '#16a085' }, 
-            font: { color: textColor } 
-          },
-          soft: { 
-            color: { background: softOrange, border: '#d35400' }, 
+          tool: { 
+            color: { background: toolColor, border: '#004D40' }, 
             font: { color: textColor } 
           }
         },
