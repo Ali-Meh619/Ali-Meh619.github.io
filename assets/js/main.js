@@ -346,97 +346,101 @@
 
   if (container) {
     const nodes = new vis.DataSet([
-      // Core Areas
-      { id: 1, label: 'Machine Learning', group: 'core', value: 30 },
-      { id: 2, label: 'Wireless Comm', group: 'core', value: 25 },
+      // --- CLUSTER 1: Technical / ML (Left/Center) ---
+      { id: 1, label: 'Machine Learning', group: 'core_tech', value: 35 },
+      { id: 2, label: 'Generative AI', group: 'core_tech', value: 30 },
+      { id: 3, label: 'Research', group: 'core_tech', value: 28 },
       
-      // AI Skills & Architectures
-      { id: 3, label: 'LLMs', group: 'ai', value: 22 },
-      { id: 4, label: 'Agentic AI', group: 'ai', value: 20 },
-      { id: 5, label: 'GNNs', group: 'ai', value: 18 },
-      { id: 6, label: 'Transformers', group: 'ai', value: 18 },
-      { id: 7, label: 'RAG', group: 'ai', value: 16 },
-      { id: 8, label: 'Deep Learning', group: 'ai', value: 18 },
-      { id: 9, label: 'Time Series', group: 'ai', value: 15 },
-      { id: 10, label: 'CNNs/RNNs', group: 'ai', value: 14 },
+      // Deep Tech
+      { id: 4, label: 'LLMs', group: 'ai_tech', value: 25 },
+      { id: 5, label: 'Agentic AI', group: 'ai_tech', value: 24 },
+      { id: 6, label: 'GNNs', group: 'ai_tech', value: 20 },
+      { id: 7, label: 'RAG', group: 'ai_tech', value: 18 },
+      { id: 8, label: 'MCP', group: 'ai_tech', value: 18 },
+      { id: 9, label: 'Transformers', group: 'ai_tech', value: 18 },
       
-      // Frameworks & Tools
-      { id: 11, label: 'LangChain', group: 'tool', value: 14 },
-      { id: 12, label: 'PyTorch', group: 'tool', value: 16 },
-      { id: 13, label: 'Docker/AWS', group: 'tool', value: 14 },
-      { id: 14, label: 'Python', group: 'tool', value: 18 },
-      { id: 15, label: 'SQL', group: 'tool', value: 10 },
+      // Tools & Code
+      { id: 10, label: 'Python', group: 'tools', value: 22 },
+      { id: 11, label: 'PyTorch', group: 'tools', value: 18 },
+      { id: 12, label: 'LangChain', group: 'tools', value: 16 },
+      { id: 13, label: 'Docker', group: 'tools', value: 15 },
       
-      // Specific Concepts
-      { id: 16, label: 'MCP', group: 'concept', value: 14 },
-      { id: 17, label: 'Optimization', group: 'concept', value: 12 },
-      { id: 18, label: 'Fine-tuning', group: 'concept', value: 12 },
-      { id: 19, label: 'Unsupervised', group: 'concept', value: 12 }
+      // --- CLUSTER 2: Soft Skills / Process (Right/Top) ---
+      { id: 20, label: 'Problem Solving', group: 'soft', value: 22 },
+      { id: 21, label: 'Leadership', group: 'soft', value: 20 },
+      { id: 22, label: 'Collaboration', group: 'soft', value: 20 },
+      { id: 23, label: 'Project Mgmt', group: 'soft', value: 18 },
+      { id: 24, label: 'Innovation', group: 'soft', value: 18 },
+      { id: 25, label: 'Communication', group: 'soft', value: 18 }
     ]);
 
     const edges = new vis.DataSet([
-      // Core Connections
-      { from: 1, to: 3 },  // ML -> LLMs
-      { from: 1, to: 5 },  // ML -> GNNs
-      { from: 1, to: 8 },  // ML -> Deep Learning
-      { from: 1, to: 14 }, // ML -> Python
-      { from: 2, to: 17 }, // Wireless -> Optimization
-      { from: 2, to: 5 },  // Wireless -> GNNs (applied)
+      // Tech Cluster Connections
+      { from: 1, to: 2 }, // ML <-> GenAI
+      { from: 1, to: 10 }, // ML -> Python
+      { from: 1, to: 11 }, // ML -> PyTorch
+      { from: 2, to: 4 }, // GenAI -> LLMs
+      { from: 2, to: 5 }, // GenAI -> Agentic AI
       
-      // LLM & Agentic Ecosystem
-      { from: 3, to: 4 },  // LLMs -> Agentic AI
-      { from: 3, to: 6 },  // LLMs -> Transformers
-      { from: 3, to: 7 },  // LLMs -> RAG
-      { from: 3, to: 18 }, // LLMs -> Fine-tuning
-      { from: 4, to: 11 }, // Agentic AI -> LangChain
-      { from: 4, to: 16 }, // Agentic AI -> MCP
+      { from: 4, to: 9 }, // LLMs -> Transformers
+      { from: 4, to: 7 }, // LLMs -> RAG
+      { from: 5, to: 8 }, // Agentic AI -> MCP
+      { from: 5, to: 12 }, // Agentic AI -> LangChain
+      { from: 1, to: 6 }, // ML -> GNNs
       
-      // Deep Learning & Architectures
-      { from: 8, to: 6 },  // DL -> Transformers
-      { from: 8, to: 10 }, // DL -> CNNs/RNNs
-      { from: 8, to: 12 }, // DL -> PyTorch
-      { from: 8, to: 19 }, // DL -> Unsupervised
+      { from: 10, to: 13 }, // Python -> Docker
       
-      // Applications & Tools
-      { from: 9, to: 10 }, // Time Series -> RNNs
-      { from: 11, to: 14 },// LangChain -> Python
-      { from: 13, to: 1 }, // Docker/AWS -> ML (deployment)
-      { from: 15, to: 1 }, // SQL -> ML (data)
+      // Soft Skills Cluster Connections
+      { from: 20, to: 24 }, // Problem Solving <-> Innovation
+      { from: 21, to: 23 }, // Leadership <-> Project Mgmt
+      { from: 21, to: 22 }, // Leadership <-> Collaboration
+      { from: 22, to: 25 }, // Collaboration <-> Communication
+      
+      // Bridges between Tech and Soft Skills
+      { from: 3, to: 1 },  // Research <-> ML
+      { from: 3, to: 24 }, // Research <-> Innovation (Bridge)
+      { from: 5, to: 20 }, // Agentic AI <-> Problem Solving (Bridge)
+      { from: 23, to: 13 }, // Project Mgmt <-> Docker (DevOps link)
+      { from: 21, to: 3 },  // Leadership <-> Research (Leading research)
     ]);
 
     const getGraphOptions = (isDark) => {
-      // Enhanced colors for better visibility
-      const textColor = isDark ? '#f0f0f0' : '#1a1a1a';
-      const coreColor = '#149ddd'; // Brand Blue
-      const aiColor = '#6c5ce7';   // Purple/Indigo
-      const toolColor = '#00b894'; // Teal/Green
-      const conceptColor = '#fdcb6e'; // Orange/Yellow
+      // High contrast color palette for readability
+      const textColor = isDark ? '#ffffff' : '#000000';
+      const nodeBorder = isDark ? '#ffffff' : '#333333';
+      
+      // Distinct but harmonious palette
+      const techBlue = '#2196F3';    // Core Tech
+      const deepPurple = '#9C27B0';  // AI/Deep Tech
+      const toolGreen = '#009688';   // Tools
+      const softOrange = '#FF9800';  // Soft Skills
       
       return {
         nodes: {
           shape: 'dot',
           font: {
-            size: 18,
-            face: 'Poppins, sans-serif', // Improved font
+            size: 20,
+            face: 'Poppins, sans-serif',
             color: textColor,
-            strokeWidth: 2, // Outline for text readability
-            strokeColor: isDark ? '#000000' : '#ffffff'
+            strokeWidth: 4, // Thicker outline for text
+            strokeColor: isDark ? '#121212' : '#ffffff', // Text outline (halo) for readability
+            vadjust: -1
           },
           borderWidth: 2,
           shadow: {
             enabled: true,
-            color: 'rgba(0,0,0,0.2)',
+            color: 'rgba(0,0,0,0.3)',
             size: 10,
-            x: 5,
-            y: 5
+            x: 3,
+            y: 3
           }
         },
         edges: {
-          width: 2, // Thicker edges
+          width: 1.5,
           color: { 
-            color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.2)', 
-            highlight: '#149ddd',
-            hover: '#149ddd'
+            color: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.25)', 
+            highlight: '#2196F3',
+            hover: '#2196F3'
           },
           smooth: {
             type: 'continuous',
@@ -446,26 +450,27 @@
         physics: {
           stabilization: false,
           barnesHut: {
-            gravitationalConstant: -3000,
-            springConstant: 0.04,
-            springLength: 120 // More spread out
+            gravitationalConstant: -4000, // Stronger repulsion to separate clusters
+            springConstant: 0.03,
+            springLength: 150, // Longer springs for spacing
+            damping: 0.09
           }
         },
         groups: {
-          core: { 
-            color: { background: coreColor, border: '#0a6ca3' }, 
-            font: { size: 24, color: '#ffffff', strokeWidth: 0 } 
+          core_tech: { 
+            color: { background: techBlue, border: '#0d47a1' }, 
+            font: { size: 28, color: '#ffffff' } // Larger font for core
           },
-          ai: { 
-            color: { background: aiColor, border: '#5541d1' }, 
+          ai_tech: { 
+            color: { background: deepPurple, border: '#4a148c' }, 
             font: { color: textColor } 
           },
-          tool: { 
-            color: { background: toolColor, border: '#008c70' }, 
+          tools: { 
+            color: { background: toolGreen, border: '#004d40' }, 
             font: { color: textColor } 
           },
-          concept: { 
-            color: { background: conceptColor, border: '#d39e00' }, 
+          soft: { 
+            color: { background: softOrange, border: '#e65100' }, 
             font: { color: textColor } 
           }
         },
