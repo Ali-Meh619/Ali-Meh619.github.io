@@ -405,42 +405,45 @@
     ]);
 
     const getGraphOptions = (isDark) => {
-      // High contrast color palette for readability
-      const textColor = isDark ? '#ffffff' : '#000000';
-      const nodeBorder = isDark ? '#ffffff' : '#333333';
+      // Revised Palette for "Premium" Look & Dark Mode Clarity
+      const textColor = isDark ? '#e0e0e0' : '#2d3436'; // Off-white for dark mode, dark gray for light
       
-      // Distinct but harmonious palette
-      const techBlue = '#2196F3';    // Core Tech
-      const deepPurple = '#9C27B0';  // AI/Deep Tech
-      const toolGreen = '#009688';   // Tools
-      const softOrange = '#FF9800';  // Soft Skills
+      // Vibrant, Modern Colors
+      const techBlue = '#3498db';    // Bright Blue
+      const deepPurple = '#9b59b6';  // Amethyst
+      const toolGreen = '#1abc9c';   // Turquoise
+      const softOrange = '#e67e22';  // Carrot
       
+      // Edge Colors
+      const edgeColor = isDark ? 'rgba(200, 200, 200, 0.35)' : 'rgba(45, 52, 54, 0.2)';
+      const edgeHighlight = '#e74c3c'; // Reddish highlight for interaction
+
       return {
         nodes: {
           shape: 'dot',
           font: {
-            size: 20,
+            size: 18,
             face: 'Poppins, sans-serif',
             color: textColor,
-            strokeWidth: 4, // Thicker outline for text
-            strokeColor: isDark ? '#121212' : '#ffffff', // Text outline (halo) for readability
+            strokeWidth: 3, 
+            strokeColor: isDark ? '#2d3436' : '#ffffff', // Halo effect
             vadjust: -1
           },
           borderWidth: 2,
           shadow: {
             enabled: true,
-            color: 'rgba(0,0,0,0.3)',
+            color: 'rgba(0,0,0,0.2)',
             size: 10,
-            x: 3,
-            y: 3
+            x: 5,
+            y: 5
           }
         },
         edges: {
-          width: 1.5,
+          width: 2, // Slightly thicker
           color: { 
-            color: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.25)', 
-            highlight: '#2196F3',
-            hover: '#2196F3'
+            color: edgeColor,
+            highlight: edgeHighlight,
+            hover: edgeHighlight
           },
           smooth: {
             type: 'continuous',
@@ -450,27 +453,27 @@
         physics: {
           stabilization: false,
           barnesHut: {
-            gravitationalConstant: -4000, // Stronger repulsion to separate clusters
-            springConstant: 0.03,
-            springLength: 150, // Longer springs for spacing
+            gravitationalConstant: -3000,
+            springConstant: 0.04,
+            springLength: 130,
             damping: 0.09
           }
         },
         groups: {
           core_tech: { 
-            color: { background: techBlue, border: '#0d47a1' }, 
-            font: { size: 28, color: '#ffffff' } // Larger font for core
+            color: { background: techBlue, border: '#2980b9' }, 
+            font: { size: 24, color: textColor } 
           },
           ai_tech: { 
-            color: { background: deepPurple, border: '#4a148c' }, 
+            color: { background: deepPurple, border: '#8e44ad' }, 
             font: { color: textColor } 
           },
           tools: { 
-            color: { background: toolGreen, border: '#004d40' }, 
+            color: { background: toolGreen, border: '#16a085' }, 
             font: { color: textColor } 
           },
           soft: { 
-            color: { background: softOrange, border: '#e65100' }, 
+            color: { background: softOrange, border: '#d35400' }, 
             font: { color: textColor } 
           }
         },
