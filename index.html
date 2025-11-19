@@ -30,6 +30,9 @@
 
   <!-- Custom Animations CSS -->
   <link href="assets/css/custom-animations.css" rel="stylesheet">
+  
+  <!-- Vis.js CSS -->
+  <link href="https://unpkg.com/vis-network/styles/vis-network.min.css" rel="stylesheet" type="text/css" />
 
   <!-- =======================================================
   * Template Name: iPortfolio
@@ -118,16 +121,25 @@
                   <li style="padding: 8px 0;"><i class="bi bi-check-circle-fill" style="color: #149ddd; margin-right: 10px;"></i> Graph Machine Learning</li>
                   <li style="padding: 8px 0;"><i class="bi bi-check-circle-fill" style="color: #149ddd; margin-right: 10px;"></i> Learning-based Algorithm Design</li>
                 </ul>
-      </div>
+              </div>
               <div class="col-md-6">
-            <ul style="list-style: none; padding-left: 0;">
+                <ul style="list-style: none; padding-left: 0;">
                   <li style="padding: 8px 0;"><i class="bi bi-check-circle-fill" style="color: #149ddd; margin-right: 10px;"></i> Image Processing</li>
                   <li style="padding: 8px 0;"><i class="bi bi-check-circle-fill" style="color: #149ddd; margin-right: 10px;"></i> Time-series Analysis & Forecasting</li>
                   <li style="padding: 8px 0;"><i class="bi bi-check-circle-fill" style="color: #149ddd; margin-right: 10px;"></i> Wireless Communications</li>
-            </ul>
+                </ul>
+              </div>
+            </div>      
+          </div>
         </div>
-      </div>      
-      </div>
+
+        <!-- Interactive Skill Graph -->
+        <div class="row mt-5">
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="150">
+            <h3>Skill Network</h3>
+            <p style="font-size: 14px; margin-bottom: 15px;">Explore the connections between my technical skills. Drag nodes to interact.</p>
+            <div id="skill-graph" style="width: 100%; height: 500px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9;"></div>
+          </div>
         </div>
 
         <!-- Education -->
@@ -167,6 +179,7 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

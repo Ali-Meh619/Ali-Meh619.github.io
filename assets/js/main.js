@@ -331,6 +331,124 @@
     } else {
       themeToggle.innerHTML = '<i class="bi bi-moon-fill"></i>';
     }
+    
+    // Update graph theme if it exists
+    if (typeof updateGraphTheme === 'function') {
+      updateGraphTheme();
+    }
   });
+
+  /**
+   * Interactive Skill Graph
+   */
+  const container = document.getElementById('skill-graph');
+  let updateGraphTheme;
+
+  if (container) {
+    const nodes = new vis.DataSet([
+      // Core Areas
+      { id: 1, label: 'Machine Learning', group: 'core', value: 25 },
+      { id: 2, label: 'Wireless Comm', group: 'core', value: 20 },
+      
+      // AI Skills
+      { id: 3, label: 'LLMs', group: 'ai', value: 15 },
+      { id: 4, label: 'GNNs', group: 'ai', value: 18 },
+      { id: 5, label: 'Deep Learning', group: 'ai', value: 15 },
+      { id: 6, label: 'Computer Vision', group: 'ai', value: 12 },
+      { id: 7, label: 'Time Series', group: 'ai', value: 12 },
+      
+      // Tools & Frameworks
+      { id: 8, label: 'PyTorch', group: 'tool', value: 15 },
+      { id: 9, label: 'TensorFlow', group: 'tool', value: 10 },
+      { id: 10, label: 'Docker', group: 'tool', value: 10 },
+      { id: 11, label: 'AWS', group: 'tool', value: 8 },
+      { id: 12, label: 'Python', group: 'tool', value: 15 },
+      
+      // Specific Concepts
+      { id: 13, label: 'Optimization', group: 'concept', value: 10 },
+      { id: 14, label: 'Agents', group: 'concept', value: 12 },
+      { id: 15, label: 'Mamba', group: 'concept', value: 10 },
+      { id: 16, label: 'Graph Transformer', group: 'concept', value: 10 }
+    ]);
+
+    const edges = new vis.DataSet([
+      // Connections to Core
+      { from: 1, to: 3 }, // ML -> LLMs
+      { from: 1, to: 4 }, // ML -> GNNs
+      { from: 1, to: 5 }, // ML -> Deep Learning
+      { from: 1, to: 6 }, // ML -> Computer Vision
+      { from: 1, to: 7 }, // ML -> Time Series
+      { from: 1, to: 12 }, // ML -> Python
+      
+      { from: 2, to: 13 }, // Wireless -> Optimization
+      { from: 2, to: 4 },  // Wireless -> GNNs (applied)
+      
+      // Skill Connections
+      { from: 3, to: 14 }, // LLMs -> Agents
+      { from: 4, to: 16 }, // GNNs -> Graph Transformer
+      { from: 5, to: 8 },  // DL -> PyTorch
+      { from: 5, to: 9 },  // DL -> TensorFlow
+      { from: 12, to: 8 }, // Python -> PyTorch
+      { from: 4, to: 15 }, // GNNs -> Mamba
+      
+      // Tool Connections
+      { from: 10, to: 11 }, // Docker -> AWS
+      { from: 1, to: 13 },  // ML -> Optimization
+    ]);
+
+    const getGraphOptions = (isDark) => {
+      const textColor = isDark ? '#e0e0e0' : '#333333';
+      const coreColor = '#149ddd';
+      const aiColor = '#37b3ed';
+      const toolColor = isDark ? '#6c757d' : '#adb5bd'; // Lighter in dark mode for contrast? Or distinct
+      
+      return {
+        nodes: {
+          shape: 'dot',
+          font: {
+            size: 16,
+            face: 'Open Sans',
+            color: textColor
+          },
+          borderWidth: 2,
+          shadow: true
+        },
+        edges: {
+          width: 1,
+          color: { color: isDark ? '#555555' : '#cccccc', highlight: '#149ddd' },
+          smooth: {
+            type: 'continuous'
+          }
+        },
+        physics: {
+          stabilization: false,
+          barnesHut: {
+            gravitationalConstant: -2000,
+            springConstant: 0.04,
+            springLength: 95
+          }
+        },
+        groups: {
+          core: { color: { background: '#149ddd', border: '#0a6ca3' }, font: { size: 20, color: '#ffffff' } },
+          ai:   { color: { background: '#37b3ed', border: '#149ddd' }, font: { color: textColor } },
+          tool: { color: { background: isDark ? '#444444' : '#e9ecef', border: '#adb5bd' }, font: { color: textColor } },
+          concept: { color: { background: '#ffc107', border: '#d39e00' }, font: { color: isDark ? '#000' : '#333' } }
+        },
+        interaction: {
+          hover: true,
+          tooltipDelay: 200,
+          zoomView: false
+        }
+      };
+    };
+
+    const network = new vis.Network(container, { nodes, edges }, getGraphOptions(currentTheme === 'dark'));
+
+    // Function to update graph theme dynamically
+    updateGraphTheme = () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      network.setOptions(getGraphOptions(isDark));
+    };
+  }
 
 })()
