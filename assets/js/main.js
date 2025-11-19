@@ -406,7 +406,7 @@
 
     const getGraphOptions = (isDark) => {
       // Revised Palette for "Premium" Look & Dark Mode Clarity
-      const textColor = isDark ? '#e0e0e0' : '#2d3436'; // Off-white for dark mode, dark gray for light
+      const textColor = isDark ? '#ffffff' : '#2d3436'; // Pure White for dark mode, Dark Grey for light
       
       // Vibrant, Modern Colors
       const techBlue = '#3498db';    // Bright Blue
@@ -415,7 +415,7 @@
       const softOrange = '#e67e22';  // Carrot
       
       // Edge Colors
-      const edgeColor = isDark ? 'rgba(200, 200, 200, 0.35)' : 'rgba(45, 52, 54, 0.2)';
+      const edgeColor = isDark ? 'rgba(255, 255, 255, 0.4)' : 'rgba(45, 52, 54, 0.2)';
       const edgeHighlight = '#e74c3c'; // Reddish highlight for interaction
 
       return {
@@ -425,8 +425,8 @@
             size: 18,
             face: 'Poppins, sans-serif',
             color: textColor,
-            strokeWidth: 3, 
-            strokeColor: isDark ? '#2d3436' : '#ffffff', // Halo effect
+            strokeWidth: isDark ? 0 : 3, // No stroke in dark mode
+            strokeColor: '#ffffff',      // Only for light mode
             vadjust: -1
           },
           borderWidth: 2,
@@ -439,7 +439,7 @@
           }
         },
         edges: {
-          width: 2, // Slightly thicker
+          width: 2,
           color: { 
             color: edgeColor,
             highlight: edgeHighlight,
