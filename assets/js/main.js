@@ -345,7 +345,6 @@
   let updateGraphTheme;
 
   if (container) {
-  if (container) {
     const nodes = new vis.DataSet([
       // --- CLUSTER 1: Core ML & Deep Learning (Left) ---
       { id: 1, label: 'Machine Learning', group: 'core', value: 35 },
