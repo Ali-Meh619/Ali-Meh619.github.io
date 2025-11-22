@@ -533,9 +533,8 @@
         });
     });
 
-    // Animation Loop for Pulse & Moving Edges
+    // Animation Loop for Pulse
     const stepTime = 40; 
-    let offset = 0;
 
     network.on("afterDrawing", function (ctx) {
       const time = Date.now();
@@ -558,35 +557,6 @@
           ctx.stroke();
         }
       });
-
-      // 2. Moving Edges (Traffic Flow)
-      offset -= 0.5; // Speed of traffic
-      if (offset < -10) offset = 0; // Reset dashes
-
-      const allEdges = edges.get();
-      const allNodes = network.getPositions();
-
-      ctx.save();
-      ctx.setLineDash([5, 15]); // Dash pattern: 5px dash, 15px gap
-      ctx.lineDashOffset = offset;
-      
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      ctx.strokeStyle = isDark ? "rgba(100, 181, 246, 0.6)" : "rgba(20, 157, 221, 0.6)";
-      ctx.lineWidth = 2;
-
-      allEdges.forEach(edge => {
-        const fromPos = allNodes[edge.from];
-        const toPos = allNodes[edge.to];
-        
-        if (fromPos && toPos) {
-          ctx.beginPath();
-          ctx.moveTo(fromPos.x, fromPos.y);
-          ctx.lineTo(toPos.x, toPos.y);
-          ctx.stroke();
-        }
-      });
-      
-      ctx.restore();
     });
 
     // Continuous animation loop
