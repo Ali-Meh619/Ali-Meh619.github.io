@@ -488,10 +488,10 @@
         physics: {
           stabilization: false,
           barnesHut: {
-            gravitationalConstant: -4000, // Stronger repulsion for wider layout
-            springConstant: 0.02,
-            springLength: 180,           // Even longer connections
-            damping: 0.09
+            gravitationalConstant: -3000,
+            springConstant: 0.01,
+            springLength: 200,
+            damping: 0.08
           }
         },
         groups: {
@@ -521,6 +521,78 @@
     };
 
     const network = new vis.Network(container, { nodes, edges }, getGraphOptions(currentTheme === 'dark'));
+
+    // Entrance Animation: Zoom In on Load
+    network.once("stabilizationIterationsDone", function() {
+        network.fit({
+            animation: {
+                duration: 1000,
+                easingFunction: "easeInOutQuad"
+            },
+            scale: 0.8 // Start slightly zoomed out then fit
+        });
+    });
+
+    // Animation Loop for Pulse & Moving Edges
+    const stepTime = 40; 
+    let offset = 0;
+
+    network.on("afterDrawing", function (ctx) {
+      const time = Date.now();
+      
+      // 1. Pulse Animation for Key Nodes
+      const scale = 1 + Math.sin(time / 400) * 0.1;
+      const pulseNodes = [1, 4, 100]; // ML, Agentic AI, Software Eng
+      const nodePositions = network.getPositions(pulseNodes);
+
+      pulseNodes.forEach(nodeId => {
+        const pos = nodePositions[nodeId];
+        if (pos) {
+          const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+          const pulseColor = isDark ? "rgba(30, 136, 229, 0.3)" : "rgba(20, 157, 221, 0.3)";
+
+          ctx.beginPath();
+          ctx.arc(pos.x, pos.y, 35 * scale, 0, 2 * Math.PI);
+          ctx.strokeStyle = pulseColor;
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+      });
+
+      // 2. Moving Edges (Traffic Flow)
+      offset -= 0.5; // Speed of traffic
+      if (offset < -10) offset = 0; // Reset dashes
+
+      const allEdges = edges.get();
+      const allNodes = network.getPositions();
+
+      ctx.save();
+      ctx.setLineDash([5, 15]); // Dash pattern: 5px dash, 15px gap
+      ctx.lineDashOffset = offset;
+      
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      ctx.strokeStyle = isDark ? "rgba(100, 181, 246, 0.6)" : "rgba(20, 157, 221, 0.6)";
+      ctx.lineWidth = 2;
+
+      allEdges.forEach(edge => {
+        const fromPos = allNodes[edge.from];
+        const toPos = allNodes[edge.to];
+        
+        if (fromPos && toPos) {
+          ctx.beginPath();
+          ctx.moveTo(fromPos.x, fromPos.y);
+          ctx.lineTo(toPos.x, toPos.y);
+          ctx.stroke();
+        }
+      });
+      
+      ctx.restore();
+    });
+
+    // Continuous animation loop
+    setInterval(() => {
+      network.redraw();
+    }, stepTime);
 
     // Function to update graph theme dynamically
     updateGraphTheme = () => {
