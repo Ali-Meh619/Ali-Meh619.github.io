@@ -383,7 +383,13 @@
       { id: 25, label: 'SQL', group: 'tool', value: 15 },
       { id: 26, label: 'C/C++', group: 'tool', value: 15 },
       { id: 27, label: 'MATLAB', group: 'tool', value: 15 },
-      { id: 28, label: 'Git / GitHub', group: 'tool', value: 15 }
+      { id: 28, label: 'Git / GitHub', group: 'tool', value: 15 },
+
+      // App Development (under Software Eng)
+      { id: 101, label: 'App Development', group: 'method', value: 22 },
+      { id: 102, label: 'Flutter', group: 'tool', value: 16 },
+      { id: 103, label: 'Swift (iOS)', group: 'tool', value: 16 },
+      { id: 104, label: 'Kotlin (Android)', group: 'tool', value: 16 }
     ]);
 
     const edges = new vis.DataSet([
@@ -394,6 +400,12 @@
       { from: 100, to: 25 },  // Software Eng -> SQL
       { from: 100, to: 24 },  // Software Eng -> Docker/AWS
       { from: 100, to: 28 },  // Software Eng -> Git/GitHub
+      { from: 100, to: 101 }, // Software Eng -> App Development
+      
+      // App Development -> Frameworks
+      { from: 101, to: 102 }, // App Development -> Flutter
+      { from: 101, to: 103 }, // App Development -> Swift (iOS)
+      { from: 101, to: 104 }, // App Development -> Kotlin (Android)
       
       // --- The MAIN Bridge ---
       { from: 100, to: 1 },   // Software Eng -> Machine Learning
