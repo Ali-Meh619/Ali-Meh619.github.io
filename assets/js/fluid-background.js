@@ -10,7 +10,10 @@
   if (!canvas) return;
 
   const gl = canvas.getContext('webgl2', { alpha: true, antialias: false, powerPreference: 'high-performance' });
-  if (!gl) return;
+  if (!gl) {
+    canvas.style.display = 'none';
+    return;
+  }
 
   const SIM_RES = 256;
   const JACOBI_ITERATIONS = 25;
@@ -206,6 +209,13 @@
     programs.copy = createProgram(baseVert, copyFrag);
     programs.display = createProgram(baseVert, displayFrag);
 
+    const allPrograms = [programs.advection, programs.divergence, programs.jacobi, programs.gradient, programs.splat, programs.copy, programs.display];
+    if (allPrograms.some(function (p) { return !p; })) {
+      console.warn('Fluid background: shader compile/link failed, disabling.');
+      canvas.style.display = 'none';
+      return null;
+    }
+
     const r = SIM_RES;
     const velFormat = gl.RG32F;
     const velType = gl.FLOAT;
@@ -222,6 +232,7 @@
       createFBO(r, r, gl.R32F, gl.RED, gl.FLOAT)
     ];
     divergenceFBO = createFBO(r, r, gl.R32F, gl.RED, gl.FLOAT);
+    return true;
   }
 
   function resize() {
@@ -407,44 +418,49 @@
   let frameId = 0;
 
   function step() {
-    resize();
-    if (width <= 0 || height <= 0) {
-      frameId = requestAnimationFrame(step);
+    try {
+      resize();
+      if (width <= 0 || height <= 0) {
+        frameId = requestAnimationFrame(step);
+        return;
+      }
+
+      const afterRain = updateRainAndSplat(velIdx, dyeIdx);
+      velIdx = afterRain.velIdx;
+      dyeIdx = afterRain.dyeIdx;
+
+      const vRead = velocityFBO[velIdx];
+      const vWrite = velocityFBO[1 - velIdx];
+      advect(vWrite, vRead, vRead, 0.98, DT, true);
+      velIdx = 1 - velIdx;
+      computeDivergence(velocityFBO[velIdx]);
+
+      clearFBO(pressureFBO[0], 0, 0, 0, 1);
+      let pRead = pressureFBO[0];
+      let pWrite = pressureFBO[1];
+      for (let i = 0; i < JACOBI_ITERATIONS; i++) {
+        jacobiIteration(pRead, divergenceFBO, pWrite);
+        const t = pRead;
+        pRead = pWrite;
+        pWrite = t;
+      }
+      subtractGradient(velocityFBO[velIdx], pRead, vWrite);
+      velIdx = 1 - velIdx;
+
+      const dyeRead = dyeFBO[dyeIdx];
+      const dyeWrite = dyeFBO[1 - dyeIdx];
+      advect(dyeWrite, velocityFBO[velIdx], dyeRead, 0.995, DT, false);
+      dyeIdx = 1 - dyeIdx;
+
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const brightness = isDark ? 0.7 : 0.85;
+      const darken = isDark ? 0.06 : 0.92;
+      copyToScreen(dyeFBO[dyeIdx], brightness, darken);
+    } catch (e) {
+      console.warn('Fluid background error:', e);
+      canvas.style.display = 'none';
       return;
     }
-
-    const afterRain = updateRainAndSplat(velIdx, dyeIdx);
-    velIdx = afterRain.velIdx;
-    dyeIdx = afterRain.dyeIdx;
-
-    const vRead = velocityFBO[velIdx];
-    const vWrite = velocityFBO[1 - velIdx];
-    advect(vWrite, vRead, vRead, 0.98, DT, true);
-    velIdx = 1 - velIdx;
-    computeDivergence(velocityFBO[velIdx]);
-
-    clearFBO(pressureFBO[0], 0, 0, 0, 1);
-    let pRead = pressureFBO[0];
-    let pWrite = pressureFBO[1];
-    for (let i = 0; i < JACOBI_ITERATIONS; i++) {
-      jacobiIteration(pRead, divergenceFBO, pWrite);
-      const t = pRead;
-      pRead = pWrite;
-      pWrite = t;
-    }
-    subtractGradient(velocityFBO[velIdx], pRead, vWrite);
-    velIdx = 1 - velIdx;
-
-    const dyeRead = dyeFBO[dyeIdx];
-    const dyeWrite = dyeFBO[1 - dyeIdx];
-    advect(dyeWrite, velocityFBO[velIdx], dyeRead, 0.995, DT, false);
-    dyeIdx = 1 - dyeIdx;
-
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const brightness = isDark ? 0.7 : 0.85;
-    const darken = isDark ? 0.06 : 0.92;
-    copyToScreen(dyeFBO[dyeIdx], brightness, darken);
-
     frameId = requestAnimationFrame(step);
   }
 
@@ -456,7 +472,7 @@
     initRain();
   }
 
-  initResources();
+  if (!initResources()) return;
   initSim();
   step();
 
