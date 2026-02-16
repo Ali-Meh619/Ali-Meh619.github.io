@@ -5,6 +5,43 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ---------- Homepage: WebGL fluid + rain background ---------- */
+.page-home #fluid-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.page-home #header {
+  z-index: 9997;
+}
+
+.page-home #main {
+  position: relative;
+  z-index: 1;
+}
+
+.page-home #hero {
+  background: transparent;
+}
+
+.page-home #hero::before {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.page-home .about {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+[data-theme="dark"] .page-home .about {
+  background: rgba(18, 18, 24, 0.88);
+}
+
 /* Page fade-in animation - keep it subtle to avoid flash */
 /* Removed body fade-in to prevent dark flash on load */
 
