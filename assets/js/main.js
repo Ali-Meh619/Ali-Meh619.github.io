@@ -350,10 +350,12 @@
       { id: 1, label: 'Machine Learning', group: 'core', value: 35 },
       { id: 2, label: 'Deep Learning', group: 'core', value: 32 },
       { id: 3, label: 'LLMs', group: 'core', value: 30 },
+      { id: 30, label: 'VLMs', group: 'core', value: 26 },
       { id: 4, label: 'Agentic AI', group: 'core', value: 28 },
       
       // Architectures & Methods
       { id: 5, label: 'GNNs', group: 'method', value: 22 },
+      { id: 31, label: 'NLP', group: 'method', value: 20 },
       { id: 6, label: 'Transformers', group: 'method', value: 22 },
       { id: 7, label: 'RAG', group: 'method', value: 20 },
       { id: 8, label: 'MCP', group: 'method', value: 18 },
@@ -378,10 +380,15 @@
       { id: 20, label: 'Python', group: 'tool', value: 25 },
       { id: 21, label: 'PyTorch', group: 'tool', value: 22 },
       { id: 22, label: 'TensorFlow', group: 'tool', value: 20 },
+      { id: 29, label: 'Scikit-Learn', group: 'tool', value: 18 },
+      { id: 32, label: 'MLflow', group: 'tool', value: 16 },
+      { id: 33, label: 'FastAPI', group: 'tool', value: 16 },
       { id: 23, label: 'LangChain', group: 'tool', value: 20 },
       { id: 24, label: 'Docker / AWS', group: 'tool', value: 18 },
       { id: 25, label: 'SQL', group: 'tool', value: 15 },
       { id: 26, label: 'C/C++', group: 'tool', value: 15 },
+      { id: 34, label: 'R', group: 'tool', value: 14 },
+      { id: 35, label: 'Julia', group: 'tool', value: 14 },
       { id: 27, label: 'MATLAB', group: 'tool', value: 15 },
       { id: 28, label: 'Git / GitHub', group: 'tool', value: 15 },
 
@@ -400,6 +407,8 @@
       { from: 100, to: 25 },  // Software Eng -> SQL
       { from: 100, to: 24 },  // Software Eng -> Docker/AWS
       { from: 100, to: 28 },  // Software Eng -> Git/GitHub
+      { from: 100, to: 34 },  // Software Eng -> R
+      { from: 100, to: 35 },  // Software Eng -> Julia
       { from: 100, to: 101 }, // Software Eng -> App Development
       
       // App Development -> Frameworks
@@ -446,9 +455,18 @@
       // Specific Tech Alignments
       { from: 20, to: 21 }, // Python -> PyTorch
       { from: 20, to: 22 }, // Python -> TensorFlow
+      { from: 20, to: 29 }, // Python -> Scikit-Learn
+      { from: 20, to: 32 }, // Python -> MLflow
+      { from: 20, to: 33 }, // Python -> FastAPI
       
       { from: 21, to: 2 },  // PyTorch -> Deep Learning
       { from: 22, to: 2 },  // TensorFlow -> Deep Learning
+      { from: 29, to: 1 },  // Scikit-Learn -> Machine Learning
+      
+      // VLMs & NLP
+      { from: 2, to: 30 },  // Deep Learning -> VLMs
+      { from: 3, to: 30 },  // LLMs -> VLMs
+      { from: 3, to: 31 },  // LLMs -> NLP
     ]);
 
     const getGraphOptions = (isDark) => {
